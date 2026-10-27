@@ -18,7 +18,7 @@ body{margin:0}img{max-width:100%}[hidden]{display:none!important}
 :root{
   --bg:#F3F8FD; --surface:#FFFFFF; --ink:#0D2742; --muted:#4E6680; --line:#CFE0F0;
   --cel:#74ACDF; --cel-strong:#2F74B5; --sol:#F6B40E; --stripe:#DDEBF8;
-  --good:#1C8C5A; --good-soft:#DDF3E8; --bad:#C23A2F; --bad-soft:#FCE6E3;
+  --good:#1C8C5A; --good-soft:#DDF3E8; --bad:#C23A2F; --bad-soft:#FCE6E3; --hint-soft:#FFF3CF;
   --jcel:#74ACDF; --jwhite:#FFFFFF; --jnum:#0D2742;
   --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
   --body:"Atkinson Hyperlegible",Verdana,system-ui,sans-serif;
@@ -27,11 +27,11 @@ body{margin:0}img{max-width:100%}[hidden]{display:none!important}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#0A1726; --surface:#11243A; --ink:#EAF3FC; --muted:#A5BBD2; --line:#23415F;
   --cel:#8EC1EE; --cel-strong:#8EC1EE; --sol:#F7C23A; --stripe:#142C47;
-  --good:#4CCB8C; --good-soft:#12382A; --bad:#FF8A7E; --bad-soft:#3D1C1A; color-scheme:dark}}
+  --good:#4CCB8C; --good-soft:#12382A; --bad:#FF8A7E; --bad-soft:#3D1C1A; --hint-soft:#3A2E0E; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0A1726; --surface:#11243A; --ink:#EAF3FC; --muted:#A5BBD2; --line:#23415F;
   --cel:#8EC1EE; --cel-strong:#8EC1EE; --sol:#F7C23A; --stripe:#142C47;
-  --good:#4CCB8C; --good-soft:#12382A; --bad:#FF8A7E; --bad-soft:#3D1C1A; color-scheme:dark}
+  --good:#4CCB8C; --good-soft:#12382A; --bad:#FF8A7E; --bad-soft:#3D1C1A; --hint-soft:#3A2E0E; color-scheme:dark}
 *{box-sizing:border-box}
 html,body{background:var(--bg)}
 body{color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.45;overflow-x:hidden}
@@ -182,8 +182,8 @@ input.in,select.in{font:inherit;font-size:17px;padding:10px 12px;border-radius:1
 
 /* tabs */
 .tabs{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--surface);border-top:2px solid var(--line);display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom,0px);padding-left:max(4px,env(safe-area-inset-left,0px));padding-right:max(4px,env(safe-area-inset-right,0px))}
-.tabs-in{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));width:100%;max-width:640px}
-.tab{background:none;border:none;padding:8px 2px 10px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:12px;font-weight:700;color:var(--muted)}
+.tabs-in{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));width:100%;max-width:680px}
+.tab{background:none;border:none;padding:8px 1px 10px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;font-weight:700;color:var(--muted)}
 .tab svg{width:24px;height:24px}
 .tab[aria-current="page"]{color:var(--ink)}
 .tab[aria-current="page"] svg{color:var(--cel-strong)}
@@ -254,6 +254,50 @@ input.in,select.in{font:inherit;font-size:17px;padding:10px 12px;border-radius:1
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:60;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;font-weight:700;font-size:15px;max-width:calc(100% - 32px);text-align:center}
 .notice{border-radius:14px;padding:12px 14px;background:var(--stripe);font-size:14px}
 #confetti{position:fixed;inset:0;pointer-events:none;z-index:70}
+/* pistas */
+.prog i.pi{background:var(--sol)}
+.fb.hint{background:var(--hint-soft);border:2px solid var(--sol);color:var(--ink)}
+.fb.hint .h{color:var(--ink)}
+.fb .sub{font-weight:700;color:var(--muted)}
+.qhead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.howbtn{flex:none;border:2px solid var(--cel-strong);color:var(--cel-strong);background:transparent;border-radius:99px;padding:6px 12px;font-weight:700;font-size:14px}
+.howbox{border-top:2px dashed var(--line);padding-top:14px}
+.expr .o.show{background:var(--sol);border-color:var(--sol);color:#0D2742;animation:pulse 1s infinite}
+@keyframes pulse{50%{transform:scale(1.12)}}
+/* guía */
+.ghint{border-radius:16px;background:var(--hint-soft);border:2px solid var(--sol);padding:14px 16px;font-size:16px}
+.gtema{display:flex;flex-direction:column;gap:10px}
+.gtema h3{font-size:26px;font-weight:800}
+details.g{background:var(--surface);border:2px solid var(--line);border-radius:var(--r)}
+details.g[open]{border-color:var(--cel-strong)}
+details.g summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+details.g summary::-webkit-details-marker{display:none}
+details.g summary h4{margin:0;font-size:18px;line-height:1.2}
+details.g summary .chev{flex:none;width:22px;height:22px;transition:transform .2s;color:var(--cel-strong)}
+details.g[open] summary .chev{transform:rotate(180deg)}
+.gbody{padding:0 16px 16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.gbody.compact{padding:0}
+.gbody p{margin:0}
+.gbody ol{margin:0;padding-left:24px;display:flex;flex-direction:column;gap:6px}
+.gbody li::marker{font-family:var(--display);font-weight:900;color:var(--cel-strong)}
+.glbl{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cel-strong)}
+.gex{background:var(--bg);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.gex .ln{font-family:var(--display);font-weight:800;font-size:22px;line-height:1.25;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.gex .ln.long{font-family:var(--body);font-weight:700;font-size:16px}
+.gex .ln+.ln{color:var(--cel-strong)}
+.gex .ln:last-child{color:var(--ink)}
+.gwarn{background:var(--bad-soft);border-radius:12px;padding:12px 14px}
+.gwarn b{color:var(--bad)}
+.gchips{display:flex;flex-wrap:wrap;gap:6px}
+.gchips span{padding:4px 10px;border-radius:8px;background:var(--surface);border:1px solid var(--line);font-weight:700;font-variant-numeric:tabular-nums;font-size:15px}
+.places{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:4px;max-width:420px}
+.places div{display:flex;flex-direction:column;align-items:center;border-radius:8px;background:var(--surface);border:2px solid var(--line);padding:4px 0}
+.places small{font-size:12px;color:var(--muted);font-weight:700}
+.places b{font-family:var(--display);font-size:28px;font-weight:900}
+.places .z{border-color:var(--bad)}
+.places .z b{color:var(--bad)}
+.tope .go{color:inherit}
+.tope .btn.ghost{border-color:currentColor;color:inherit}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head><body>
@@ -301,10 +345,18 @@ input.in,select.in{font:inherit;font-size:17px;padding:10px 12px;border-radius:1
       <div class="eyebrow" style="color:inherit;opacity:.8">Lo que más ha fallado en el libro</div>
       <h2>Refuerza esto a tope</h2>
       <ul id="topeList"></ul>
-      <button class="btn sol go" type="button" id="topeGo">Entrenar lo de a tope · 15 preguntas</button>
+      <div class="row"><button class="btn sol" type="button" id="topeGo">Entrenar lo de a tope · 15 preguntas</button><button class="btn ghost" type="button" id="topeHow">Ver cómo se hacen</button></div>
     </div>
     <div class="sec-h"><h2>Calendario de partidos</h2><span class="muted">Del lunes 26 al viernes 30</span></div>
     <div class="fixture" id="fixture"></div>
+  </section>
+
+  <!-- APRENDE -->
+  <section id="view-aprende" class="view" hidden style="flex-direction:column;gap:18px">
+    <div class="sec-h"><h2>Cómo se hace</h2><span class="muted">Explicaciones con ejemplos</span></div>
+    <div class="ghint"><b>Si fallas, te ayudamos.</b> Al primer fallo te damos una pista y lo vuelves a intentar. Al segundo, te enseñamos la solución explicada. En cada pregunta tienes el botón «¿Cómo se hace?».</div>
+    <div id="guideList" style="display:flex;flex-direction:column;gap:22px"></div>
+    <div class="gtema"><h3>Cómo se juega</h3><div id="gameGuide" style="display:flex;flex-direction:column;gap:10px"></div></div>
   </section>
 
   <!-- ENTRENAR -->
@@ -388,9 +440,10 @@ input.in,select.in{font:inherit;font-size:17px;padding:10px 12px;border-radius:1
 
 <nav class="tabs" aria-label="Secciones"><div class="tabs-in">
   <button class="tab" data-view="misiones" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V4l8 3 8-3v17l-8 3-8-3z"/><path d="M12 7v14"/></svg>Misiones</button>
+  <button class="tab" data-view="aprende" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h7a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H2zM22 5h-7a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h8z"/></svg>Aprende</button>
   <button class="tab" data-view="entrenar" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/></svg>Entrenar</button>
   <button class="tab" data-view="juegos" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m12 7 4 3-1.5 5h-5L8 10z"/></svg>Juegos</button>
-  <button class="tab" data-view="calendario" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Calendario</button>
+  <button class="tab" data-view="calendario" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Fechas</button>
   <button class="tab" data-view="informe" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Informe</button>
 </div></nav>
 
@@ -456,38 +509,38 @@ function genExpr(){for(var g=0;g<200;g++){var s=pick(COMB)();if(validExpr(s))ret
 var GEN={};
 GEN.cuad=function(){var r=Math.random(),n,e;
   if(r<0.45){n=pick([2,3,4,5,6,7,8,9,10,11,12,13,14,15,20,25,30]);
-    return {text:n+'² = ?',kind:'num',answer:n*n,explain:n+'² = '+n+' × '+n+' = '+fmt(n*n)+'. El 2 dice cuántas veces se escribe el '+n+': dos veces.',
+    return {hint:'El ² te dice que escribas el '+n+' DOS veces y las multipliques: '+n+' × '+n+'. Ni una vez más.',text:n+'² = ?',kind:'num',answer:n*n,explain:n+'² = '+n+' × '+n+' = '+fmt(n*n)+'. El 2 dice cuántas veces se escribe el '+n+': dos veces.',
       trap:function(v){return v===n*n*n?'Has multiplicado el '+n+' TRES veces. Al cuadrado son solo DOS: '+n+' × '+n+'.':v===n*2?'No es '+n+' × 2. Es '+n+' × '+n+'.':v===n*n*10?'Te sobra un cero: '+n+' × '+n+' = '+fmt(n*n)+'.':null}}}
   if(r<0.85){n=pick([1,2,3,4,5,6,7,8,9,10]);
-    return {text:n+'³ = ?',kind:'num',answer:n*n*n,explain:n+'³ = '+n+' × '+n+' × '+n+' = '+fmt(n*n*n)+'. Tres veces el '+n+', ni una más.',
+    return {hint:'El ³ te dice TRES veces: '+n+' × '+n+' × '+n+'. Hazlo por partes: primero '+n+' × '+n+' y lo que salga, otra vez × '+n+'.',text:n+'³ = ?',kind:'num',answer:n*n*n,explain:n+'³ = '+n+' × '+n+' × '+n+' = '+fmt(n*n*n)+'. Tres veces el '+n+', ni una más.',
       trap:function(v){return v===n*n*n*n&&n>1?'Has multiplicado CUATRO veces. Al cubo son TRES: '+n+' × '+n+' × '+n+'.':v===n*n&&n>1?'Eso es el cuadrado. El cubo lleva un '+n+' más.':v===n*3&&n>1?'No es '+n+' × 3. Es '+n+' × '+n+' × '+n+'.':null}}}
   e=pick([2,2,3]);n=e===2?rnd(2,12):rnd(2,6);
-  return {text:'¿Qué número elevado '+EXPN[e]+' da '+fmt(Math.pow(n,e))+'?',kind:'num',answer:n,long:true,explain:n+(e===2?'²':'³')+' = '+fmt(Math.pow(n,e))+'.'}};
+  return {hint:'Prueba con números pequeños: 2, 3, 4… Multiplica cada uno por sí mismo '+(e===2?'dos':'tres')+' veces hasta que te salga '+fmt(Math.pow(n,e))+'.',text:'¿Qué número elevado '+EXPN[e]+' da '+fmt(Math.pow(n,e))+'?',kind:'num',answer:n,long:true,explain:n+(e===2?'²':'³')+' = '+fmt(Math.pow(n,e))+'.'}};
 
 GEN.pot=function(){var r=Math.random(),b=rnd(2,9),e=rnd(2,6),opts,ans;
   function prod(x,k){return Array(k).fill(x).join(' × ')}
   function sum(x,k){return Array(k).fill(x).join(' + ')}
   if(r<0.2){var askB=Math.random()<0.5;ans=askB?b:e;
     opts=uniq([String(b),String(e),String(b*e),String(b+e),String(b*2)]).slice(0,4);if(opts.indexOf(String(ans))<0)opts[3]=String(ans);
-    return {text:'En '+b+sup(e)+', ¿cuál es '+(askB?'la base':'el exponente')+'?',kind:'mc',answer:String(ans),options:shuffle(opts),explain:'En '+b+sup(e)+' la base es '+b+' (el número que se repite) y el exponente es '+e+' (cuántas veces se repite).'}}
+    return {hint:'La base es el número grande, el que se repite. El exponente es el pequeñito de arriba: dice cuántas veces se repite.',text:'En '+b+sup(e)+', ¿cuál es '+(askB?'la base':'el exponente')+'?',kind:'mc',answer:String(ans),options:shuffle(opts),explain:'En '+b+sup(e)+' la base es '+b+' (el número que se repite) y el exponente es '+e+' (cuántas veces se repite).'}}
   if(r<0.45){ans=b+sup(e);opts=uniq([ans,e+sup(b),b+' × '+e,b+sup(e+1)]);
-    return {text:prod(b,e)+' = ?',kind:'mc',answer:ans,options:shuffle(opts),long:e>4,explain:'Se repite el '+b+' '+e+' veces → '+b+sup(e)+'.'}}
+    return {hint:'Cuenta cuántas veces aparece el '+b+'. Ese número va arriba, pequeñito.',text:prod(b,e)+' = ?',kind:'mc',answer:ans,options:shuffle(opts),long:e>4,explain:'Se repite el '+b+' '+e+' veces → '+b+sup(e)+'.'}}
   if(r<0.7){ans=words(b)+' '+EXPN[e];opts=uniq([ans,words(e)+' '+EXPN[Math.min(b,9)]||'',words(b)+' '+EXPN[Math.min(e+1,9)],words(b)+' por '+words(e)]).filter(Boolean);
-    return {text:'¿Cómo se lee '+b+sup(e)+'?',kind:'mc',answer:ans,options:shuffle(opts),explain:b+sup(e)+' se lee «'+ans+'».'}}
+    return {hint:'Primero se dice el número grande. Luego el de arriba: ² «al cuadrado», ³ «al cubo», ⁴ «a la cuarta», ⁵ «a la quinta», ⁶ «a la sexta».',text:'¿Cómo se lee '+b+sup(e)+'?',kind:'mc',answer:ans,options:shuffle(opts),explain:b+sup(e)+' se lee «'+ans+'».'}}
   if(r<0.88){e=rnd(3,5);ans=prod(b,e);opts=uniq([ans,sum(b,e),b+' × '+e,prod(e,Math.min(b,5))]);
-    return {text:'¿Qué es igual a '+b+sup(e)+'?',kind:'mc',answer:ans,options:shuffle(opts),long:true,explain:b+sup(e)+' es multiplicar el '+b+' por sí mismo '+e+' veces: '+ans+' = '+fmt(Math.pow(b,e))+'.'}}
+    return {hint:'Una potencia es MULTIPLICAR el mismo número, no sumarlo. El '+e+' de arriba dice cuántas veces se escribe el '+b+'.',text:'¿Qué es igual a '+b+sup(e)+'?',kind:'mc',answer:ans,options:shuffle(opts),long:true,explain:b+sup(e)+' es multiplicar el '+b+' por sí mismo '+e+' veces: '+ans+' = '+fmt(Math.pow(b,e))+'.'}}
   e=rnd(3,6);ans=b+' × '+e;opts=uniq([ans,b+sup(e),e+sup(b),b+' + '+e]);
-  return {text:sum(b,e)+' = ?',kind:'mc',answer:ans,options:shuffle(opts),long:true,explain:'Sumar el '+b+' '+e+' veces es una multiplicación: '+b+' × '+e+' = '+(b*e)+'. ¡No es una potencia!'}};
+  return {hint:'Sumar el mismo número varias veces es una multiplicación, no una potencia. ¿Cuántas veces se suma el '+b+'?',text:sum(b,e)+' = ?',kind:'mc',answer:ans,options:shuffle(opts),long:true,explain:'Sumar el '+b+' '+e+' veces es una multiplicación: '+b+' × '+e+' = '+(b*e)+'. ¡No es una potencia!'}};
 
 GEN.pot10=function(){var r=Math.random(),n=rnd(2,9),a,m,ans;
-  if(r<0.3){n=rnd(2,8);return {text:'10'+sup(n)+' = ?',kind:'num',answer:Math.pow(10,n),explain:'10'+sup(n)+' es un 1 seguido de '+n+' ceros: '+fmt(Math.pow(10,n))+'.',
+  if(r<0.3){n=rnd(2,8);return {hint:'Escribe un 1 y detrás tantos ceros como dice el número pequeño de arriba ('+n+').',text:'10'+sup(n)+' = ?',kind:'num',answer:Math.pow(10,n),explain:'10'+sup(n)+' es un 1 seguido de '+n+' ceros: '+fmt(Math.pow(10,n))+'.',
     trap:function(v){return v===10*n?'No es 10 × '+n+'. Es un 1 con '+n+' ceros.':(v===Math.pow(10,n+1)||v===Math.pow(10,n-1))?'Cuenta bien los ceros: tantos como el exponente ('+n+').':null}}}
-  if(r<0.6){a=pick([3,5,7,8,12,13,16,35,42,61,76]);n=rnd(2,6);return {text:a+' × 10'+sup(n)+' = ?',kind:'num',answer:a*Math.pow(10,n),explain:'Escribe '+a+' y añade '+n+' ceros: '+fmt(a*Math.pow(10,n))+'.',
+  if(r<0.6){a=pick([3,5,7,8,12,13,16,35,42,61,76]);n=rnd(2,6);return {hint:'Escribe el '+a+' y pégale detrás '+n+' ceros. ¡Cuéntalos con el dedo!',text:a+' × 10'+sup(n)+' = ?',kind:'num',answer:a*Math.pow(10,n),explain:'Escribe '+a+' y añade '+n+' ceros: '+fmt(a*Math.pow(10,n))+'.',
     trap:function(v){return v===a*Math.pow(10,n+1)||v===a*Math.pow(10,n-1)?'Revisa los ceros: el exponente '+n+' dice que son '+n+'.':null}}}
-  if(r<0.8){a=pick([2,4,5,9,15,28,42,145,157,56,89]);n=rnd(2,6);return {text:fmt(a*Math.pow(10,n))+' = '+a+' × 10ⁿ. ¿Cuánto vale n?',kind:'num',answer:n,long:true,explain:'Detrás del '+a+' hay '+n+' ceros, así que n = '+n+'.'}}
-  if(r<0.9){return {text:'¿Cuántos ceros tiene 10'+sup(n)+' escrito en cifras?',kind:'num',answer:n,long:true,explain:'Tantos ceros como el exponente: '+n+'.'}}
+  if(r<0.8){a=pick([2,4,5,9,15,28,42,145,157,56,89]);n=rnd(2,6);return {hint:'Cuenta los ceros que hay detrás del '+a+'. Ese número es n.',text:fmt(a*Math.pow(10,n))+' = '+a+' × 10ⁿ. ¿Cuánto vale n?',kind:'num',answer:n,long:true,explain:'Detrás del '+a+' hay '+n+' ceros, así que n = '+n+'.'}}
+  if(r<0.9){return {hint:'En las potencias de 10, el exponente (el número pequeño de arriba) te dice cuántos ceros lleva.',text:'¿Cuántos ceros tiene 10'+sup(n)+' escrito en cifras?',kind:'num',answer:n,long:true,explain:'Tantos ceros como el exponente: '+n+'.'}}
   m=n+pick([-1,0,1]);if(m<1)m=1;ans=n<m?'<':n>m?'>':'=';
-  return {text:'10'+sup(n)+'  ☐  '+fmt(Math.pow(10,m)),kind:'mc',answer:ans,options:['<','>','='],explain:'10'+sup(n)+' = '+fmt(Math.pow(10,n))+', así que 10'+sup(n)+' '+ans+' '+fmt(Math.pow(10,m))+'.'}};
+  return {hint:'Escribe 10'+sup(n)+' en cifras: un 1 y '+n+' ceros. Luego compara con '+fmt(Math.pow(10,m))+'.',text:'10'+sup(n)+'  ☐  '+fmt(Math.pow(10,m)),kind:'mc',answer:ans,options:['<','>','='],explain:'10'+sup(n)+' = '+fmt(Math.pow(10,n))+', así que 10'+sup(n)+' '+ans+' '+fmt(Math.pow(10,m))+'.'}};
 
 function digitsOf(N){return String(N).split('').reverse().map(Number)}
 function decTerms(N){var d=digitsOf(N),t=[];for(var p=d.length-1;p>=0;p--)if(d[p])t.push({d:d[p],e:p});return t}
@@ -497,85 +550,85 @@ GEN.desc10=function(){var r=Math.random(),N,t;
   if(r<0.45){var k=rnd(3,5),es=shuffle([0,1,2,3,4,5,6,7,8]).slice(0,k).sort(function(a,b){return b-a});
     t=es.map(function(e){return {d:rnd(1,9),e:e}});N=t.reduce(function(s,o){return s+o.d*Math.pow(10,o.e)},0);
     var conc=Number(t.map(function(o){return o.d}).join(''));
-    return {text:t.map(function(o){return termStr(o)}).join(' + ')+' = ?',kind:'num',answer:N,long:true,
+    return {hint:'El más grande es 10'+sup(t[0].e)+', así que el número tiene '+(t[0].e+1)+' cifras. Dibuja '+(t[0].e+1)+' huecos y coloca cada cifra: el exponente dice cuántas cifras quedan a su derecha. Rellena con 0 los huecos vacíos.',text:t.map(function(o){return termStr(o)}).join(' + ')+' = ?',kind:'num',answer:N,long:true,
       explain:'Cada término va en su sitio: '+t.map(function(o){return fmt(o.d*Math.pow(10,o.e))}).join(' + ')+' = '+fmt(N)+'.',
       trap:function(v){return v===conc?'Te faltan los ceros. 10'+sup(t[0].e)+' significa que detrás del '+t[0].d+' hay '+t[0].e+' cifras. Rellena con 0 los huecos.':(String(v).length!==String(N).length?'Cuenta las cifras: el número más grande (10'+sup(t[0].e)+') dice que tiene '+(t[0].e+1)+' cifras.':null)}}}
   N=randNumWithZeros(5,9);t=decTerms(N);
   if(r<0.75){var cands=t.filter(function(o){return o.e>=2});var h=pick(cands);
-    return {text:fmt(N)+' = '+t.map(function(o){return termStr(o,o===h)}).join(' + ')+'. ¿Cuánto vale n?',kind:'num',answer:h.e,long:true,
+    return {hint:'Busca ese '+h.d+' en el número y cuenta cuántas cifras tiene a su derecha (sin contarlo a él). Ese es el exponente.',text:fmt(N)+' = '+t.map(function(o){return termStr(o,o===h)}).join(' + ')+'. ¿Cuánto vale n?',kind:'num',answer:h.e,long:true,
       explain:'El '+h.d+' está en las '+PLACE[h.e]+' → '+h.d+' × '+fmt(Math.pow(10,h.e))+' = '+h.d+' × 10'+sup(h.e)+'.',
       trap:function(v){return v===h.e+1?'El exponente es el número de cifras que hay DETRÁS del '+h.d+', sin contar el '+h.d+'.':null}}}
   var ok=t.map(function(o){return termStr(o)}).join(' + ');
   var w1=t.map(function(o){return termStr({d:o.d,e:o.e+1})}).join(' + ');
   var w2=t.map(function(o,i){return termStr({d:o.d,e:Math.max(0,t.length-1-i)})}).join(' + ');
   var w3=t.length>2?t.filter(function(o,i){return i!==1}).map(function(o){return termStr(o)}).join(' + '):t.map(function(o){return termStr({d:o.d,e:Math.max(0,o.e-1)})}).join(' + ');
-  return {text:'¿Cuál es la descomposición de '+fmt(N)+'?',kind:'mc',answer:ok,options:shuffle(uniq([ok,w1,w2,w3])),long:true,explain:fmt(N)+' = '+ok+'.'}};
+  return {hint:'La primera cifra ('+t[0].d+') tiene '+t[0].e+' cifras detrás, así que va con 10'+sup(t[0].e)+'. Busca la opción que empiece así y no se salte ninguna cifra que no sea 0.',text:'¿Cuál es la descomposición de '+fmt(N)+'?',kind:'mc',answer:ok,options:shuffle(uniq([ok,w1,w2,w3])),long:true,explain:fmt(N)+' = '+ok+'.'}};
 
 GEN.raiz=function(){var r=Math.random(),n=pick([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,20,25,30]);
-  if(r<0.5)return {text:'√'+fmt(n*n)+' = ?',kind:'num',answer:n,explain:'√'+fmt(n*n)+' = '+n+' porque '+n+' × '+n+' = '+fmt(n*n)+'.',trap:function(v){return v*2===n*n?'La raíz no es la mitad. Busca el número que multiplicado por sí mismo da '+fmt(n*n)+'.':null}};
-  if(r<0.8)return {text:'?² = '+fmt(n*n),kind:'num',answer:n,explain:n+' × '+n+' = '+fmt(n*n)+'.'};
-  if(Math.random()<0.5){n=pick([5,6,7,8,9,10,12,15,20,30]);return {text:'Un agricultor quiere plantar '+fmt(n*n)+' naranjos en una finca cuadrada. ¿Cuántos plantará por lado?',kind:'num',answer:n,long:true,explain:'√'+fmt(n*n)+' = '+n+'.'}}
-  n=pick([6,8,9,12,15,20]);return {text:'El suelo de una habitación cuadrada tiene '+n+' baldosas por lado. ¿Cuántas baldosas hay en total?',kind:'num',answer:n*n,long:true,explain:n+'² = '+n+' × '+n+' = '+fmt(n*n)+'.'}};
+  if(r<0.5)return {hint:'Busca el número que multiplicado por sí mismo da '+fmt(n*n)+'. Prueba: 5 × 5, 6 × 6, 7 × 7…',text:'√'+fmt(n*n)+' = ?',kind:'num',answer:n,explain:'√'+fmt(n*n)+' = '+n+' porque '+n+' × '+n+' = '+fmt(n*n)+'.',trap:function(v){return v*2===n*n?'La raíz no es la mitad. Busca el número que multiplicado por sí mismo da '+fmt(n*n)+'.':null}};
+  if(r<0.8)return {hint:'¿Qué número multiplicado por sí mismo da '+fmt(n*n)+'? Prueba con varios.',text:'?² = '+fmt(n*n),kind:'num',answer:n,explain:n+' × '+n+' = '+fmt(n*n)+'.'};
+  if(Math.random()<0.5){n=pick([5,6,7,8,9,10,12,15,20,30]);return {hint:'En un cuadrado todos los lados son iguales. Busca el número que, multiplicado por sí mismo, da '+fmt(n*n)+'. Es una raíz cuadrada.',text:'Un agricultor quiere plantar '+fmt(n*n)+' naranjos en una finca cuadrada. ¿Cuántos plantará por lado?',kind:'num',answer:n,long:true,explain:'√'+fmt(n*n)+' = '+n+'.'}}
+  n=pick([6,8,9,12,15,20]);return {hint:'Una habitación cuadrada tiene '+n+' filas de '+n+' baldosas. Es '+n+'²: multiplica.',text:'El suelo de una habitación cuadrada tiene '+n+' baldosas por lado. ¿Cuántas baldosas hay en total?',kind:'num',answer:n*n,long:true,explain:n+'² = '+n+' × '+n+' = '+fmt(n*n)+'.'}};
 
 function uniqDigitPos(N){var d=digitsOf(N),c={};d.forEach(function(x){c[x]=(c[x]||0)+1});var ps=[];d.forEach(function(x,p){if(x&&c[x]===1)ps.push(p)});return ps}
 GEN.valpos=function(){var r=Math.random(),N,ps,p,d;
   if(r<0.3){do{N=rnd(1e6,999999999);ps=uniqDigitPos(N)}while(!ps.length);p=pick(ps);d=digitsOf(N)[p];
-    return {text:'En '+fmt(N)+', ¿qué valor tiene la cifra '+d+'?',kind:'num',answer:d*Math.pow(10,p),long:true,explain:'El '+d+' está en las '+PLACE[p]+': vale '+fmt(d*Math.pow(10,p))+'.',
+    return {hint:'Busca el '+d+' y cuenta cuántas cifras tiene a su derecha. Su valor es el '+d+' con esos ceros detrás.',text:'En '+fmt(N)+', ¿qué valor tiene la cifra '+d+'?',kind:'num',answer:d*Math.pow(10,p),long:true,explain:'El '+d+' está en las '+PLACE[p]+': vale '+fmt(d*Math.pow(10,p))+'.',
       trap:function(v){return v===d?'Pregunta su VALOR según la posición, no la cifra sola.':null}}}
   if(r<0.55){var k=rnd(3,4),es=shuffle([1,2,3,4,5,6,7,8]).slice(0,k).sort(function(a,b){return b-a});var t=es.map(function(e){return {d:rnd(1,9),e:e}});
     if(Math.random()<0.5)t.push({d:rnd(1,9),e:0});N=t.reduce(function(s,o){return s+o.d*Math.pow(10,o.e)},0);
-    return {text:t.map(function(o){return o.e?'('+o.d+' × '+fmt(Math.pow(10,o.e))+')':String(o.d)}).join(' + ')+' = ?',kind:'num',answer:N,long:true,explain:'Suma cada parte: '+t.map(function(o){return fmt(o.d*Math.pow(10,o.e))}).join(' + ')+' = '+fmt(N)+'.'}}
+    return {hint:'Calcula cada paréntesis (es poner ceros detrás de la cifra) y súmalos colocándolos uno debajo de otro, alineados a la derecha.',text:t.map(function(o){return o.e?'('+o.d+' × '+fmt(Math.pow(10,o.e))+')':String(o.d)}).join(' + ')+' = ?',kind:'num',answer:N,long:true,explain:'Suma cada parte: '+t.map(function(o){return fmt(o.d*Math.pow(10,o.e))}).join(' + ')+' = '+fmt(N)+'.'}}
   if(r<0.8){do{N=rnd(1e5,999999999);p=rnd(1,String(N).length-3);var dd=digitsOf(N)}while(!dd[p]||!dd[p+1]);
     var diff=dd[p]*Math.pow(10,p)+dd[p+1]*Math.pow(10,p+1),M=N-diff;
-    return {text:fmt(N)+' − ? = '+fmt(M),kind:'num',answer:diff,long:true,explain:'Compara cifra a cifra: cambian las '+PLACE[p+1]+' y las '+PLACE[p]+'. Restas '+fmt(diff)+'.'}}
+    return {hint:'Pon un número encima del otro y compara cifra a cifra. Solo cambian dos cifras: lo que falta lleva esas cifras y ceros en las demás posiciones.',text:fmt(N)+' − ? = '+fmt(M),kind:'num',answer:diff,long:true,explain:'Compara cifra a cifra: cambian las '+PLACE[p+1]+' y las '+PLACE[p]+'. Restas '+fmt(diff)+'.'}}
   N=rnd(10000000,99999999);var s=String(N).split(''),vs=[N];
   for(var g=0;vs.length<4&&g<50;g++){var a=s.slice(),i=rnd(0,7),j=rnd(0,7);var tt=a[i];a[i]=a[j];a[j]=tt;if(a[0]==='0')continue;var v=Number(a.join(''));if(vs.indexOf(v)<0)vs.push(v)}
-  var mx=Math.max.apply(null,vs);return {text:'¿Cuál es el número mayor?',kind:'mc',answer:fmt(mx),options:shuffle(vs.map(fmt)),explain:'Compara de izquierda a derecha hasta encontrar la primera cifra distinta. El mayor es '+fmt(mx)+'.'}};
+  var mx=Math.max.apply(null,vs);return {hint:'Todos tienen 8 cifras. Compara de izquierda a derecha: gana el primero que tenga una cifra más grande en el mismo sitio.',text:'¿Cuál es el número mayor?',kind:'mc',answer:fmt(mx),options:shuffle(vs.map(fmt)),explain:'Compara de izquierda a derecha hasta encontrar la primera cifra distinta. El mayor es '+fmt(mx)+'.'}};
 
 function mutateWords(s){var muts=[[/quinientos/,'cincocientos'],[/setecientos/,'sietecientos'],[/novecientos/,'nuevecientos'],[/veinti(\S+)/,'veinte y $1'],[/dieci(\S+)/,'diez y $1'],[/ millones/,' millón'],[/un millón/,'uno millón'],[/ mil( |$)/,' $1'],[/cientos/,' cientos'],[/ y /,' '],[/séis|dós|trés/,function(m){return m.replace('é','e').replace('ó','o')}],[/dieciséis/,'dieciseis'],[/veintidós/,'veintidos']];
   var out=[];shuffle(muts).forEach(function(m){var t=s.replace(m[0],m[1]).replace(/\s+/g,' ').trim();if(t!==s&&out.indexOf(t)<0)out.push(t)});return out}
 GEN.letras=function(){var N;
   if(Math.random()<0.7){N=randNumWithZeros(6,8);var ok=words(N),wr=mutateWords(ok).slice(0,3);
     while(wr.length<3){var x=words(N+pick([1000,100000,10,-1000])*rnd(1,3));if(x!==ok&&wr.indexOf(x)<0)wr.push(x)}
-    return {text:'¿Cómo se escribe '+fmt(N)+'?',kind:'mc',answer:ok,options:shuffle([ok].concat(wr)),long:true,explain:fmt(N)+' se escribe: '+ok+'.'}}
-  N=randNumWithZeros(6,8);return {text:'Escribe en cifras: «'+words(N)+'»',kind:'num',answer:N,long:true,explain:'«'+words(N)+'» = '+fmt(N)+'.',
+    return {hint:'Separa por los puntos: millones, miles y lo demás. Lee cada grupo. Revisa: quinientos, setecientos, novecientos, «mil» y «millones».',text:'¿Cómo se escribe '+fmt(N)+'?',kind:'mc',answer:ok,options:shuffle([ok].concat(wr)),long:true,explain:fmt(N)+' se escribe: '+ok+'.'}}
+  N=randNumWithZeros(6,8);return {hint:'Escribe primero los millones. Después de «millones» y de «mil» van SIEMPRE 3 cifras. Si falta alguna, pon 0.',text:'Escribe en cifras: «'+words(N)+'»',kind:'num',answer:N,long:true,explain:'«'+words(N)+'» = '+fmt(N)+'.',
     trap:function(v){return String(v).length!==String(N).length?'Revisa los ceros: tiene '+String(N).length+' cifras.':null}}};
 
 GEN.divis=function(){var r=Math.random(),D,d,c,re;
   if(r<0.45){d=rnd(12,95);D=rnd(d*10,9999);c=Math.floor(D/d);re=D%d;var askC=Math.random()<0.6;
-    return {text:fmt(D)+' : '+d+'. ¿Cuál es '+(askC?'el cociente':'el resto')+'?',kind:'num',answer:askC?c:re,long:true,explain:fmt(D)+' : '+d+' → cociente '+c+', resto '+re+'. Prueba: '+d+' × '+c+' + '+re+' = '+fmt(D)+'.'}}
+    return {hint:'Cociente: cuántas veces cabe el '+d+' en '+fmt(D)+'. Resto: lo que sobra (siempre menor que '+d+'). Comprueba: '+d+' × cociente + resto = '+fmt(D)+'.',text:fmt(D)+' : '+d+'. ¿Cuál es '+(askC?'el cociente':'el resto')+'?',kind:'num',answer:askC?c:re,long:true,explain:fmt(D)+' : '+d+' → cociente '+c+', resto '+re+'. Prueba: '+d+' × '+c+' + '+re+' = '+fmt(D)+'.'}}
   d=rnd(3,15);c=rnd(4,40);re=rnd(0,d-1);D=d*c+re;
-  if(r<0.75)return {text:'En una división el divisor es '+d+', el cociente '+c+' y el resto '+re+'. ¿Cuál es el dividendo?',kind:'num',answer:D,long:true,explain:'Dividendo = divisor × cociente + resto = '+d+' × '+c+' + '+re+' = '+D+'.',trap:function(v){return v===d*c?'Te falta sumar el resto ('+re+').':null}};
+  if(r<0.75)return {hint:'Usa la prueba de la división: dividendo = divisor × cociente + resto.',text:'En una división el divisor es '+d+', el cociente '+c+' y el resto '+re+'. ¿Cuál es el dividendo?',kind:'num',answer:D,long:true,explain:'Dividendo = divisor × cociente + resto = '+d+' × '+c+' + '+re+' = '+D+'.',trap:function(v){return v===d*c?'Te falta sumar el resto ('+re+').':null}};
   d=rnd(4,9);c=rnd(4,9);re=rnd(1,d-1);D=d*c+re;
-  return {text:D+' : ? → cociente '+c+', resto '+re,kind:'num',answer:d,long:true,explain:'Busca el número que × '+c+' + '+re+' da '+D+': '+d+' × '+c+' + '+re+' = '+D+'.'}};
+  return {hint:'Quita primero el resto: '+D+' − '+re+' = '+(D-re)+'. ¿Qué número por '+c+' da '+(D-re)+'?',text:D+' : ? → cociente '+c+', resto '+re,kind:'num',answer:d,long:true,explain:'Busca el número que × '+c+' + '+re+' da '+D+': '+d+' × '+c+' + '+re+' = '+D+'.'}};
 
 GEN.comb=function(){var r=Math.random();
-  if(r<0.55){var s=genExpr(),a=evalS(s),lr=evalS(s,true),st=stepsOf(s);
-    return {text:s+' = ?',kind:'num',answer:a,explain:st.join('  →  '),
+  if(r<0.55){var s=genExpr(),a=evalS(s),lr=evalS(s,true),st=stepsOf(s),t0=tok(s),i0=nextOp(t0);
+    return {hint:'Empieza por '+fmt(t0[i0-1])+' '+t0[i0]+' '+fmt(t0[i0+1])+'. Recuerda el orden: paréntesis, luego × y :, luego + y −.',text:s+' = ?',kind:'num',answer:a,explain:st.join('  →  '),
       trap:function(v){return v===lr&&lr!==a?'Lo has hecho de izquierda a derecha. Orden: primero paréntesis, luego × y :, al final + y −.':null}}}
   if(r<0.8){for(var g=0;g<300;g++){var n=[rnd(2,20),rnd(2,12),rnd(2,9)],ops=[pick(['+','−','×',':']),pick(['+','−','×'])];
       var fs=[n[0]+' '+ops[0]+' '+n[1]+' '+ops[1]+' '+n[2],'('+n[0]+' '+ops[0]+' '+n[1]+') '+ops[1]+' '+n[2],n[0]+' '+ops[0]+' ('+n[1]+' '+ops[1]+' '+n[2]+')'];
       var vals=fs.map(function(f){return validExpr(f)?evalS(f):null});var idx=[1,2,0].filter(function(i){return vals[i]!==null&&vals.filter(function(v){return v===vals[i]}).length===1});
       if(idx.length&&vals.filter(function(v){return v!==null}).length>=2){var k=idx[0];
-        return {text:'¿Dónde van los paréntesis para que el resultado sea '+fmt(vals[k])+'?',kind:'mc',answer:fs[k],options:shuffle(fs),long:true,explain:stepsOf(fs[k]).join('  →  ')}}}}
+        return {hint:'Calcula cada opción haciendo primero lo que está entre paréntesis. ¿Cuál da '+fmt(vals[k])+'?',text:'¿Dónde van los paréntesis para que el resultado sea '+fmt(vals[k])+'?',kind:'mc',answer:fs[k],options:shuffle(fs),long:true,explain:stepsOf(fs[k]).join('  →  ')}}}}
   var f=rnd(0,4),x,k2,q,b,c2,m,s2,t2;
-  if(f===0){k2=rnd(2,6);q=rnd(2,9);x=rnd(1,15);var A=x+k2*q;b=rnd(k2+5,40);c2=b-k2;return {text:'('+A+' − ?) : ('+b+' − '+c2+') = '+q,kind:'num',answer:x,long:true,explain:'('+b+' − '+c2+') = '+k2+'. Para que dé '+q+', lo de dentro tiene que valer '+(k2*q)+': '+A+' − '+x+' = '+(k2*q)+'.'}}
-  if(f===1){b=rnd(8,20);c2=rnd(2,b-2);x=rnd(2,9);return {text:'? × ('+b+' − '+c2+') = '+((b-c2)*x),kind:'num',answer:x,long:true,explain:'('+b+' − '+c2+') = '+(b-c2)+'. '+x+' × '+(b-c2)+' = '+((b-c2)*x)+'.'}}
-  if(f===2){m=rnd(2,6);x=rnd(2,9);s2=rnd(1,20);return {text:'('+m+' × ?) + '+s2+' = '+(m*x+s2),kind:'num',answer:x,long:true,explain:'Quita el '+s2+': '+(m*x)+'. Luego '+(m*x)+' : '+m+' = '+x+'.'}}
-  if(f===3){m=rnd(2,6);q=rnd(2,9);x=m*q;s2=rnd(5,30);return {text:'(? : '+m+') + '+s2+' = '+(q+s2),kind:'num',answer:x,long:true,explain:'Lo de dentro vale '+q+'. ? : '+m+' = '+q+' → ? = '+x+'.'}}
-  k2=rnd(2,9);q=rnd(2,9);b=rnd(k2+1,k2+15);x=b-k2;return {text:(k2*q)+' : ('+b+' − ?) = '+q,kind:'num',answer:x,long:true,explain:(k2*q)+' : '+k2+' = '+q+', así que ('+b+' − ?) = '+k2+' → ? = '+x+'.'}};
+  if(f===0){k2=rnd(2,6);q=rnd(2,9);x=rnd(1,15);var A=x+k2*q;b=rnd(k2+5,40);c2=b-k2;return {hint:'Calcula primero ('+b+' − '+c2+'). Después piensa: ¿qué número dividido entre eso da '+q+'? Ese es el valor del primer paréntesis.',text:'('+A+' − ?) : ('+b+' − '+c2+') = '+q,kind:'num',answer:x,long:true,explain:'('+b+' − '+c2+') = '+k2+'. Para que dé '+q+', lo de dentro tiene que valer '+(k2*q)+': '+A+' − '+x+' = '+(k2*q)+'.'}}
+  if(f===1){b=rnd(8,20);c2=rnd(2,b-2);x=rnd(2,9);return {hint:'Calcula primero el paréntesis. Después: ¿qué número por eso da '+((b-c2)*x)+'?',text:'? × ('+b+' − '+c2+') = '+((b-c2)*x),kind:'num',answer:x,long:true,explain:'('+b+' − '+c2+') = '+(b-c2)+'. '+x+' × '+(b-c2)+' = '+((b-c2)*x)+'.'}}
+  if(f===2){m=rnd(2,6);x=rnd(2,9);s2=rnd(1,20);return {hint:'Al resultado quítale el '+s2+'. Lo que queda es '+m+' × ?. ¿Qué número por '+m+' da eso?',text:'('+m+' × ?) + '+s2+' = '+(m*x+s2),kind:'num',answer:x,long:true,explain:'Quita el '+s2+': '+(m*x)+'. Luego '+(m*x)+' : '+m+' = '+x+'.'}}
+  if(f===3){m=rnd(2,6);q=rnd(2,9);x=m*q;s2=rnd(5,30);return {hint:'Al resultado quítale el '+s2+': eso es lo que vale el paréntesis. ¿Qué número entre '+m+' da eso?',text:'(? : '+m+') + '+s2+' = '+(q+s2),kind:'num',answer:x,long:true,explain:'Lo de dentro vale '+q+'. ? : '+m+' = '+q+' → ? = '+x+'.'}}
+  k2=rnd(2,9);q=rnd(2,9);b=rnd(k2+1,k2+15);x=b-k2;return {hint:'¿Entre qué número hay que dividir '+(k2*q)+' para que dé '+q+'? Eso vale el paréntesis. Luego: '+b+' − ? = ese número.',text:(k2*q)+' : ('+b+' − ?) = '+q,kind:'num',answer:x,long:true,explain:(k2*q)+' : '+k2+' = '+q+', así que ('+b+' − ?) = '+k2+' → ? = '+x+'.'}};
 
 var PROBL=[
-  function(){var T=rnd(250,600),a=rnd(80,T-100),b=rnd(20,T-a-10);return {text:'En una fábrica de tres plantas trabajan '+T+' personas. En la primera hay '+a+' y en la segunda '+b+'. ¿Cuántas trabajan en la tercera?',answer:T-a-b,explain:a+' + '+b+' = '+(a+b)+'; '+T+' − '+(a+b)+' = '+(T-a-b)+'.'}},
-  function(){var g=pick([20,25,10]),n=rnd(40,90),tot=g*n,a=rnd(200,tot-150);return {text:'En un depósito hay '+a+' litros de agua y en otro '+(tot-a)+' litros. Si se reparte todo en garrafas de '+g+' litros, ¿cuántas garrafas se llenan?',answer:n,explain:a+' + '+(tot-a)+' = '+tot+'; '+tot+' : '+g+' = '+n+'.'}},
-  function(){var n=rnd(100,400)*2,w=pick([25,20,50]);return {text:'En un almacén hay '+n+' sacos de patatas de '+w+' kg cada uno. Si se vende la mitad de los sacos, ¿cuántos kilos quedan sin vender?',answer:n/2*w,explain:n+' : 2 = '+(n/2)+' sacos; '+(n/2)+' × '+w+' = '+fmt(n/2*w)+' kg.'}},
-  function(){var a=rnd(90,250),b=rnd(90,250),T=a+b+rnd(40,300);return {text:'Un autocar ha recorrido hoy '+a+' km y ayer '+b+' km. Si en total ha de recorrer '+T+' km, ¿cuántos km le faltan?',answer:T-a-b,explain:a+' + '+b+' = '+(a+b)+'; '+T+' − '+(a+b)+' = '+(T-a-b)+' km.'}},
-  function(){var c=rnd(40,120),n=rnd(3,8),p=rnd(2,9);return {text:'Marina compra una cafetera de '+c+' € y '+n+' paquetes iguales de café. Ha pagado '+(c+n*p)+' € en total. ¿Cuánto cuesta un paquete?',answer:p,explain:(c+n*p)+' − '+c+' = '+(n*p)+'; '+(n*p)+' : '+n+' = '+p+' €.'}},
-  function(){var B=pick([6,8,12]),P=rnd(50,120);if(P%B===0)P+=1;return {text:'Una pastelería tiene que hornear '+P+' pasteles. En cada bandeja caben '+B+'. ¿Cuántas bandejas necesitan?',answer:Math.ceil(P/B),explain:P+' : '+B+' = '+Math.floor(P/B)+' y sobran '+(P%B)+'. ¡Esos también necesitan bandeja! → '+Math.ceil(P/B)+'.',trap:function(v){return v===Math.floor(P/B)?'Los '+(P%B)+' pasteles que sobran también necesitan una bandeja.':null}}},
-  function(){var m=rnd(800,1500),b=rnd(500,1000);return {text:'Una granja produce '+fmt(m)+' huevos morenos y '+b+' blancos al día. ¿Cuántos huevos produce en una semana?',answer:(m+b)*7,explain:'('+fmt(m)+' + '+b+') × 7 = '+fmt(m+b)+' × 7 = '+fmt((m+b)*7)+'.'}},
-  function(){var f=rnd(5,9),s=rnd(4,6),v=rnd(8,15);return {text:'En una atracción hay '+f+' filas de '+s+' asientos. ¿Cuántas personas pueden subir en '+v+' viajes?',answer:f*s*v,explain:f+' × '+s+' = '+(f*s)+'; '+(f*s)+' × '+v+' = '+(f*s*v)+'.'}},
-  function(){var k=rnd(3,7);return {text:'Marta compra '+k+' bandejas de galletas. Cada bandeja tiene '+k+' filas con '+k+' galletas cada una. ¿Cuántas galletas hay?',answer:k*k*k,explain:k+' × '+k+' × '+k+' = '+k+'³ = '+(k*k*k)+'.'}},
-  function(){var T=rnd(300,500),a=rnd(60,150),b=rnd(60,150);return {text:'Un juego de construcción tiene '+T+' piezas. Ana usa '+a+' para una casa y '+b+' para un castillo. ¿Cuántas piezas le quedan?',answer:T-a-b,explain:a+' + '+b+' = '+(a+b)+'; '+T+' − '+(a+b)+' = '+(T-a-b)+'.'}}
+  function(){var T=rnd(250,600),a=rnd(80,T-100),b=rnd(20,T-a-10);return {hint:'Suma las personas de la primera y la segunda planta. Luego réstalo del total.',text:'En una fábrica de tres plantas trabajan '+T+' personas. En la primera hay '+a+' y en la segunda '+b+'. ¿Cuántas trabajan en la tercera?',answer:T-a-b,explain:a+' + '+b+' = '+(a+b)+'; '+T+' − '+(a+b)+' = '+(T-a-b)+'.'}},
+  function(){var g=pick([20,25,10]),n=rnd(40,90),tot=g*n,a=rnd(200,tot-150);return {hint:'Primero suma los litros de los dos depósitos. Luego divide entre '+g+'.',text:'En un depósito hay '+a+' litros de agua y en otro '+(tot-a)+' litros. Si se reparte todo en garrafas de '+g+' litros, ¿cuántas garrafas se llenan?',answer:n,explain:a+' + '+(tot-a)+' = '+tot+'; '+tot+' : '+g+' = '+n+'.'}},
+  function(){var n=rnd(100,400)*2,w=pick([25,20,50]);return {hint:'Primero la mitad de los sacos (divide entre 2). Luego multiplica por los kilos de cada saco.',text:'En un almacén hay '+n+' sacos de patatas de '+w+' kg cada uno. Si se vende la mitad de los sacos, ¿cuántos kilos quedan sin vender?',answer:n/2*w,explain:n+' : 2 = '+(n/2)+' sacos; '+(n/2)+' × '+w+' = '+fmt(n/2*w)+' kg.'}},
+  function(){var a=rnd(90,250),b=rnd(90,250),T=a+b+rnd(40,300);return {hint:'Suma lo que ya ha recorrido (hoy + ayer) y réstalo del total.',text:'Un autocar ha recorrido hoy '+a+' km y ayer '+b+' km. Si en total ha de recorrer '+T+' km, ¿cuántos km le faltan?',answer:T-a-b,explain:a+' + '+b+' = '+(a+b)+'; '+T+' − '+(a+b)+' = '+(T-a-b)+' km.'}},
+  function(){var c=rnd(40,120),n=rnd(3,8),p=rnd(2,9);return {hint:'Al total réstale la cafetera. Lo que queda es lo que costaron los '+n+' paquetes: divide entre '+n+'.',text:'Marina compra una cafetera de '+c+' € y '+n+' paquetes iguales de café. Ha pagado '+(c+n*p)+' € en total. ¿Cuánto cuesta un paquete?',answer:p,explain:(c+n*p)+' − '+c+' = '+(n*p)+'; '+(n*p)+' : '+n+' = '+p+' €.'}},
+  function(){var B=pick([6,8,12]),P=rnd(50,120);if(P%B===0)P+=1;return {hint:'Divide '+P+' entre '+B+'. Si sobran pasteles, ¡también necesitan una bandeja!',text:'Una pastelería tiene que hornear '+P+' pasteles. En cada bandeja caben '+B+'. ¿Cuántas bandejas necesitan?',answer:Math.ceil(P/B),explain:P+' : '+B+' = '+Math.floor(P/B)+' y sobran '+(P%B)+'. ¡Esos también necesitan bandeja! → '+Math.ceil(P/B)+'.',trap:function(v){return v===Math.floor(P/B)?'Los '+(P%B)+' pasteles que sobran también necesitan una bandeja.':null}}},
+  function(){var m=rnd(800,1500),b=rnd(500,1000);return {hint:'Suma los huevos de un día (morenos + blancos) y multiplica por los 7 días de la semana.',text:'Una granja produce '+fmt(m)+' huevos morenos y '+b+' blancos al día. ¿Cuántos huevos produce en una semana?',answer:(m+b)*7,explain:'('+fmt(m)+' + '+b+') × 7 = '+fmt(m+b)+' × 7 = '+fmt((m+b)*7)+'.'}},
+  function(){var f=rnd(5,9),s=rnd(4,6),v=rnd(8,15);return {hint:'Personas en un viaje: filas × asientos. Luego multiplica por los viajes.',text:'En una atracción hay '+f+' filas de '+s+' asientos. ¿Cuántas personas pueden subir en '+v+' viajes?',answer:f*s*v,explain:f+' × '+s+' = '+(f*s)+'; '+(f*s)+' × '+v+' = '+(f*s*v)+'.'}},
+  function(){var k=rnd(3,7);return {hint:'Bandejas × filas × galletas: es '+k+' × '+k+' × '+k+', una potencia al cubo.',text:'Marta compra '+k+' bandejas de galletas. Cada bandeja tiene '+k+' filas con '+k+' galletas cada una. ¿Cuántas galletas hay?',answer:k*k*k,explain:k+' × '+k+' × '+k+' = '+k+'³ = '+(k*k*k)+'.'}},
+  function(){var T=rnd(300,500),a=rnd(60,150),b=rnd(60,150);return {hint:'Suma las piezas que ha usado (casa + castillo) y réstalo del total.',text:'Un juego de construcción tiene '+T+' piezas. Ana usa '+a+' para una casa y '+b+' para un castillo. ¿Cuántas piezas le quedan?',answer:T-a-b,explain:a+' + '+b+' = '+(a+b)+'; '+T+' − '+(a+b)+' = '+(T-a-b)+'.'}}
 ];
 GEN.probl=function(){var p=pick(PROBL)();p.kind='num';p.long=true;return p};
 
@@ -617,25 +670,30 @@ var ALL=SKILLS.map(function(s){return s.id});
 var TOPE=SKILLS.filter(function(s){return s.nivel==='tope'}).map(function(s){return s.id});
 
 var PLAN=[
-  {fecha:'2026-10-26',nombre:'Pretemporada',sub:'Esta noche, corto',pasos:[
+  {fecha:'2026-10-26',nombre:'Pretemporada',sub:'Corto',pasos:[
+    {id:'p1g',tipo:'guia',titulo:'Cómo se hace',desc:'Cuadrados y cubos',skills:['cuad']},
     {id:'p1a',tipo:'quiz',titulo:'Prueba de nivel',desc:'12 preguntas de todo',skills:ALL,n:12},
     {id:'p1b',tipo:'quiz',titulo:'Cuadrados y cubos',desc:'Lo que más falla · 10',skills:['cuad'],n:10}]},
   {fecha:'2026-10-27',nombre:'Entreno 1 · Potencias',sub:'Tema 2',pasos:[
+    {id:'p2g',tipo:'guia',titulo:'Cómo se hace',desc:'Potencias, cuadrados y base 10',skills:['pot','cuad','pot10']},
     {id:'p2a',tipo:'quiz',titulo:'Cuadrados y cubos',desc:'A tope · 12',skills:['cuad'],n:12},
     {id:'p2b',tipo:'quiz',titulo:'Potencias y base 10',desc:'Base, exponente, 10ⁿ · 10',skills:['pot','pot10'],n:10},
     {id:'p2c',tipo:'game',titulo:'Tanda de penaltis',desc:'Con cuadrados y cubos',game:'penaltis',skills:['cuad','pot10']},
     {id:'p2d',tipo:'pdf',titulo:'Ficha en papel',desc:'Cuadrados y cubos · PDF',skills:['cuad','pot']}]},
   {fecha:'2026-10-28',nombre:'Entreno 2 · Operaciones',sub:'Tema 1',pasos:[
+    {id:'p3g',tipo:'guia',titulo:'Cómo se hace',desc:'Operaciones combinadas y números grandes',skills:['comb','valpos','letras']},
     {id:'p3a',tipo:'quiz',titulo:'Operaciones combinadas',desc:'A tope · 12',skills:['comb'],n:12},
     {id:'p3b',tipo:'game',titulo:'¿Qué va primero?',desc:'El orden de las operaciones',game:'primero'},
     {id:'p3c',tipo:'quiz',titulo:'Números grandes y letras',desc:'Valor posicional · 10',skills:['valpos','letras'],n:10},
     {id:'p3d',tipo:'pdf',titulo:'Ficha en papel',desc:'Operaciones combinadas · PDF',skills:['comb']}]},
   {fecha:'2026-10-29',nombre:'Entreno 3 · Descomposición',sub:'Temas 1 y 2',pasos:[
+    {id:'p4g',tipo:'guia',titulo:'Cómo se hace',desc:'Descomposición, raíz, divisiones y problemas',skills:['desc10','raiz','divis','probl']},
     {id:'p4a',tipo:'quiz',titulo:'Descomposición con 10ⁿ',desc:'A tope · 12',skills:['desc10'],n:12},
     {id:'p4b',tipo:'quiz',titulo:'Problemas y divisiones',desc:'Varios pasos · 8',skills:['probl','divis'],n:8},
     {id:'p4c',tipo:'game',titulo:'Contrarreloj',desc:'60 segundos',game:'contrarreloj'},
     {id:'p4d',tipo:'pdf',titulo:'Ficha en papel',desc:'Descomposición y raíces · PDF',skills:['desc10','raiz','pot10']}]},
   {fecha:'2026-10-30',nombre:'Día de partido',sub:'Último repaso',pasos:[
+    {id:'p5g',tipo:'guia',titulo:'Repaso rápido',desc:'Lo de a tope',skills:['cuad','desc10','comb']},
     {id:'p5a',tipo:'quiz',titulo:'Simulacro',desc:'20 preguntas de todo',skills:ALL,n:20},
     {id:'p5b',tipo:'game',titulo:'Parejas',desc:'Potencias y raíces',game:'parejas'},
     {id:'p5c',tipo:'game',titulo:'Penaltis final',desc:'De todo',game:'penaltis',skills:ALL}]}
@@ -660,6 +718,7 @@ function noise(t0,d,vol,freq){var a=ac();if(!a)return;var n=Math.floor(a.sampleR
 var SFX={
   ok:function(){tone(660,0,.12,'triangle',.18);tone(990,.1,.18,'triangle',.18)},
   ko:function(){tone(220,0,.25,'sawtooth',.08,140)},
+  hint:function(){tone(587,0,.12,'sine',.16);tone(784,.12,.2,'sine',.14)},
   whistle:function(){var a=ac();if(!a)return;var o=a.createOscillator(),l=a.createOscillator(),lg=a.createGain(),g=a.createGain();o.frequency.value=2900;l.frequency.value=38;lg.gain.value=180;l.connect(lg);lg.connect(o.frequency);g.gain.setValueAtTime(.0001,a.currentTime);g.gain.exponentialRampToValueAtTime(.12,a.currentTime+.03);g.gain.setValueAtTime(.12,a.currentTime+.32);g.gain.exponentialRampToValueAtTime(.0001,a.currentTime+.4);o.connect(g);g.connect(a.destination);o.start();l.start();o.stop(a.currentTime+.45);l.stop(a.currentTime+.45)},
   kick:function(){tone(150,0,.12,'sine',.35,50);noise(0,.05,.2,2000)},
   goal:function(){noise(0,1.4,.35,700);noise(.1,1.2,.25,1400);tone(523,.15,.15,'square',.07);tone(659,.3,.15,'square',.07);tone(784,.45,.3,'square',.07)},
@@ -689,10 +748,11 @@ async function delCal(ev){S.cal=S.cal.filter(function(x){return x!==ev});lsSet('
 /* ---------- informe por WhatsApp ---------- */
 function informeTexto(){var hoy=todayStr(),its=S.intentos.filter(function(i){return i.fecha===hoy&&i.total}),st=stats(),L=[];
   L.push('⚽ NecoWeb · Informe de Neco');L.push(niceDate(hoy).replace(/^./,function(c){return c.toUpperCase()}));L.push('');
-  if(its.length){var ok=0,t=0,mins=0;its.forEach(function(i){ok+=i.ok;t+=i.total;mins+=i.dur||0});L.push('Hoy: '+its.length+(its.length===1?' partido':' partidos')+' · '+ok+'/'+t+' aciertos ('+Math.round(ok/t*100)+' %) · '+Math.max(1,Math.round(mins/60))+' min');
-    its.slice().reverse().forEach(function(i){L.push('• '+(i.titulo||i.modo)+': '+i.ok+'/'+i.total)})}
+  if(its.length){var ok=0,t=0,mins=0,pi=0;its.forEach(function(i){ok+=i.ok;t+=i.total;pi+=i.pista||0;mins+=i.dur||0});L.push('Hoy: '+its.length+(its.length===1?' partido':' partidos')+' · '+ok+'/'+t+' aciertos ('+Math.round(ok/t*100)+' %)'+(pi?', '+pi+' con pista':'')+' · '+Math.max(1,Math.round(mins/60))+' min');
+    its.slice().reverse().forEach(function(i){L.push('• '+(i.titulo||i.modo)+': '+i.ok+'/'+i.total+(i.pista?' ('+i.pista+' con pista)':''))})}
   else L.push('Hoy todavía no ha jugado.');
   var m=planOn(hoy);if(m){var d=m.pasos.filter(function(p){return pasoDone(p.id)}).length;L.push('');L.push('Misión de hoy ('+m.nombre+'): '+d+' de '+m.pasos.length+' hechas')}
+  var gs=S.intentos.filter(function(i){return i.fecha===hoy&&i.modo==='guia'});if(gs.length)L.push('Explicaciones leídas: '+gs.map(function(g){return g.titulo.replace('Guía: ','')}).join(', '));
   L.push('');L.push('Por contenido (últimas respuestas):');SKILLS.forEach(function(k){var x=st.sk[k.id];if(x.rt)L.push('• '+k.nombre+': '+Math.round(x.rok/x.rt*100)+' % ('+x.rt+')'+(k.nivel==='tope'?' · a tope':''))});
   if(!SKILLS.some(function(k){return st.sk[k.id].rt}))L.push('• Aún sin datos');
   var errs=[];its.forEach(function(i){(i.errores||[]).forEach(function(e){errs.push(e)})});
@@ -703,14 +763,14 @@ function enviarPato(){var url='https://wa.me/?text='+encodeURIComponent(informeT
 function botonPato(cls){return el('button',{class:'btn '+(cls||'sol'),type:'button',onclick:enviarPato},[el('span',{html:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.3-4.4A9 9 0 1 1 21 12z"/></svg>'}),'Enviar informe a Pato'])}
 
 /* ---------- estadísticas ---------- */
-function stats(){var st={},tot=0,ok=0,dias={},secs=0;SKILLS.forEach(function(s){st[s.id]={ok:0,t:0,rok:0,rt:0}});
-  S.intentos.forEach(function(it){tot+=it.total||0;ok+=it.ok||0;secs+=it.dur||0;if(it.total)dias[it.fecha]=1;var ps=it.porSkill||{};
-    for(var k in ps){if(!st[k])continue;st[k].ok+=ps[k].ok||0;st[k].t+=ps[k].t||0;if(st[k].rt<30){st[k].rok+=ps[k].ok||0;st[k].rt+=ps[k].t||0}}});
-  return {sk:st,tot:tot,ok:ok,dias:Object.keys(dias).length,mins:Math.round(secs/60),partidos:S.intentos.filter(function(i){return i.total}).length}}
+function stats(){var st={},tot=0,ok=0,pi=0,dias={},secs=0;SKILLS.forEach(function(s){st[s.id]={ok:0,t:0,rok:0,rt:0}});
+  S.intentos.forEach(function(it){tot+=it.total||0;pi+=it.pista||0;ok+=it.ok||0;secs+=it.dur||0;if(it.total)dias[it.fecha]=1;var ps=it.porSkill||{};
+    for(var k in ps){if(!st[k])continue;st[k].ok+=ps[k].ok||0;st[k].t+=ps[k].t||0;if(st[k].rt<30){st[k].rok+=(ps[k].ok||0)-0.5*(ps[k].p||0);st[k].rt+=ps[k].t||0}}});
+  return {sk:st,tot:tot,ok:ok,pista:pi,dias:Object.keys(dias).length,mins:Math.round(secs/60),partidos:S.intentos.filter(function(i){return i.total}).length}}
 function pasoDone(id){return S.intentos.some(function(i){return i.paso===id})}
 
 /* ---------- vistas ---------- */
-var VIEWS=['misiones','entrenar','juegos','calendario','informe'];
+var VIEWS=['misiones','aprende','entrenar','juegos','calendario','informe'];
 function show(v){if(VIEWS.indexOf(v)<0)v='misiones';VIEWS.forEach(function(x){var s=$('#view-'+x);s.hidden=x!==v;if(x===v)s.style.display='flex'});
   document.querySelectorAll('.tab').forEach(function(t){if(t.dataset.view===v)t.setAttribute('aria-current','page');else t.removeAttribute('aria-current')});
   try{if(location.hash!=='#'+v)history.replaceState(null,'','#'+v)}catch(e){}window.scrollTo(0,0)}
@@ -718,12 +778,13 @@ document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click'
 
 var ICON={quiz:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 9a3 3 0 1 1 4 2.8c-.6.3-1 .9-1 1.6V15M12 19h.01"/></svg>',
   game:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m12 7 4 3-1.5 5h-5L8 10z"/></svg>',
+  guia:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h7a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H2zM22 5h-7a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h8z"/></svg>',
   pdf:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4M12 11v6M9 14l3 3 3-3"/></svg>',
   ok:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>'};
 var DIAS=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'],MESES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
 function niceDate(s){var p=s.split('-').map(Number),d=new Date(p[0],p[1]-1,p[2]);return DIAS[d.getDay()]+' '+p[2]+' de '+MESES[p[1]-1]}
 
-function runPaso(p){if(p.tipo==='quiz')startQuiz({titulo:p.titulo,skills:p.skills,n:p.n,paso:p.id});else if(p.tipo==='game')startGame(p.game,{paso:p.id,skills:p.skills});else fichaPDF(p.skills,p.desc.replace(' · PDF',''),p.id)}
+function runPaso(p){if(p.tipo==='guia'){openGuideOv(p);return}if(p.tipo==='quiz')startQuiz({titulo:p.titulo,skills:p.skills,n:p.n,paso:p.id});else if(p.tipo==='game')startGame(p.game,{paso:p.id,skills:p.skills});else fichaPDF(p.skills,p.desc.replace(' · PDF',''),p.id)}
 
 function renderFixture(){var f=$('#fixture');f.textContent='';var hoy=todayStr();
   PLAN.forEach(function(m){var done=m.pasos.every(function(p){return pasoDone(p.id)});
@@ -732,7 +793,7 @@ function renderFixture(){var f=$('#fixture');f.textContent='';var hoy=todayStr()
       el('span',{class:'pill'+(done?' ok':m.fecha===hoy?' hoy':''),text:done?'Completado':m.fecha===hoy?'Hoy':m.sub})]);
     card.appendChild(h);var st=el('div',{class:'steps'});
     m.pasos.forEach(function(p){var d=pasoDone(p.id);var b=el('button',{class:'step'+(d?' done':''),type:'button',onclick:function(){runPaso(p)}},[
-      el('span',{class:'ico',html:d?ICON.ok:ICON[p.tipo]}),el('span',{class:'tx'},[el('b',{text:p.titulo}),el('small',{text:p.desc})]),el('span',{class:'st',text:d?'Hecho':p.tipo==='pdf'?'Descargar':'Jugar'})]);st.appendChild(b)});
+      el('span',{class:'ico',html:d?ICON.ok:ICON[p.tipo]}),el('span',{class:'tx'},[el('b',{text:p.titulo}),el('small',{text:p.desc})]),el('span',{class:'st',text:d?'Hecho':p.tipo==='pdf'?'Descargar':p.tipo==='guia'?'Leer':'Jugar'})]);st.appendChild(b)});
     card.appendChild(st);if(m.fecha===hoy&&m.pasos.some(function(p){return pasoDone(p.id)})){var rb=el('div',{class:'row'});rb.appendChild(botonPato('ghost'));card.appendChild(rb)}f.appendChild(card)})}
 
 function renderTope(){var u=$('#topeList');u.textContent='';TOPE.forEach(function(id){u.appendChild(el('li',null,[el('span',{class:'tag',text:'T'+SK[id].tema}),el('div',null,[el('b',{text:SK[id].nombre}),el('p',{text:SK[id].nota})])]))})}
@@ -747,7 +808,7 @@ function renderTemas(){var st=stats().sk,w=$('#temas');w.textContent='';
         el('p',{text:RULES[s.id]}),
         el('div',{class:'meter '+meterClass(pct)},[el('i',{style:'width:'+(pct==null?0:pct)+'%'})]),
         el('div',{class:'row'},[el('span',{class:'muted num',style:'font-size:14px',text:pct==null?'Sin practicar':pct+' % en las últimas '+x.rt}),
-          el('span',{class:'row'},[el('button',{class:'btn ghost small',type:'button',text:'PDF',onclick:function(){fichaPDF([s.id],s.nombre)}}),el('button',{class:'btn small',type:'button',text:'Entrenar',onclick:function(){startQuiz({titulo:s.nombre,skills:[s.id],n:10})}})])])]))});
+          el('span',{class:'row'},[el('button',{class:'btn ghost small',type:'button',text:'Cómo se hace',onclick:function(){openGuide(s.id)}}),el('button',{class:'btn ghost small',type:'button',text:'PDF',onclick:function(){fichaPDF([s.id],s.nombre)}}),el('button',{class:'btn small',type:'button',text:'Entrenar',onclick:function(){startQuiz({titulo:s.nombre,skills:[s.id],n:10})}})])])]))});
     box.appendChild(g);w.appendChild(box)})}
 
 function renderHero(){var s=stats();$('#stGoles').textContent=s.ok;$('#stPartidos').textContent=s.partidos;$('#stAcierto').textContent=s.tot?Math.round(s.ok/s.tot*100)+'%':'–';
@@ -764,9 +825,9 @@ function renderInforme(){var pb=$('#patoBox');if(pb&&!pb.firstChild)pb.appendChi
   var errs=[];S.intentos.forEach(function(it){(it.errores||[]).forEach(function(e){errs.push(Object.assign({f:it.fecha},e))})});
   var ew=$('#iErr');ew.textContent='';if(!errs.length)ew.appendChild(el('div',{class:'empty',text:'Aquí aparecerán las preguntas falladas, con su respuesta y la buena.'}));
   errs.slice(0,15).forEach(function(e){ew.appendChild(el('div',{class:'err'},[el('span',{class:'q',text:e.q}),el('span',{class:'a'},['Puso ',el('b',{class:'r',text:e.r}),' · era ',el('b',{class:'c',text:e.c}),' · '+(SK[e.s]?SK[e.s].nombre:'')])]))});
-  var hw=$('#iHist');hw.textContent='';var hs=S.intentos.filter(function(i){return i.total||i.modo==='pdf'}).slice(0,15);
+  var hw=$('#iHist');hw.textContent='';var hs=S.intentos.filter(function(i){return i.total||i.modo==='pdf'||i.modo==='guia'}).slice(0,15);
   if(!hs.length)hw.appendChild(el('div',{class:'empty',text:'Todavía no hay partidos jugados. Empieza por la Pretemporada.'}));
-  hs.forEach(function(i){var d=new Date(i.ts);hw.appendChild(el('div',{class:'hist'},[el('span',null,[el('b',{text:i.titulo||i.modo}),el('br'),el('small',{class:'muted',text:niceDate(i.fecha)+' · '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+''})]),el('span',{class:'num',style:'font-weight:700',text:i.modo==='pdf'?'PDF':i.ok+'/'+i.total})]))});
+  hs.forEach(function(i){var d=new Date(i.ts);hw.appendChild(el('div',{class:'hist'},[el('span',null,[el('b',{text:i.titulo||i.modo}),el('br'),el('small',{class:'muted',text:niceDate(i.fecha)+' · '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+''})]),el('span',{class:'num',style:'font-weight:700',text:i.modo==='pdf'?'PDF':i.modo==='guia'?'Leído':i.ok+'/'+i.total+(i.pista?' · '+i.pista+' con pista':'')})]))});
   var dl=$('#diagList');dl.textContent='';SKILLS.forEach(function(k){dl.appendChild(el('li',null,[el('b',{text:k.nombre+' ('+(k.nivel==='tope'?'a tope':k.nivel)+'): '}),k.nota]))})}
 
 /* ---------- calendario ---------- */
@@ -795,41 +856,60 @@ $('#addForm').addEventListener('submit',async function(ev){ev.preventDefault();v
 function renderAll(){renderHero();renderFixture();renderTemas();renderInforme();renderCal()}
 
 /* ---------- overlay ---------- */
-var OV={};function openOv(){$('#ov').hidden=false;document.body.style.overflow='hidden'}
+var OV={};function openOv(){$('#ov').hidden=false;$('#ov').scrollTop=0;document.body.style.overflow='hidden'}
 function closeOv(){if(OV.timer)clearInterval(OV.timer);OV={};$('#ov').hidden=true;document.body.style.overflow='';renderAll()}
 function ovTop(title,right){return el('div',{class:'ov-top'},[el('h2',{text:title}),el('div',{class:'row'},[right||null,el('button',{class:'iconbtn',type:'button','aria-label':'Salir',text:'✕ Salir',onclick:closeOv})])])}
 function plainQ(q){return q.text}
 
 /* ---------- quiz ---------- */
 var Q=null;
-function startQuiz(o){var st=stats().sk;Q={titulo:o.titulo,list:o.list||buildQuestions(o.skills,o.n,st),i:0,res:[],paso:o.paso||null,t0:Date.now(),answered:false};openOv();play('whistle');renderQ()}
-function renderQ(){var w=$('#ovIn');w.textContent='';var q=Q.list[Q.i];
-  var prog=el('div',{class:'prog'});Q.list.forEach(function(x,i){prog.appendChild(el('i',{class:i<Q.res.length?(Q.res[i].ok?'ok':'ko'):i===Q.i?'now':''}))});
-  w.appendChild(ovTop(Q.titulo));w.appendChild(prog);
-  var card=el('div',{class:'qcard pop'},[el('div',{class:'qskill',text:'Pregunta '+(Q.i+1)+' de '+Q.list.length+' · '+SK[q.skill].nombre}),el('div',{class:'qtext'+(q.long?' long':''),text:q.text})]);
-  var fbBox=el('div');Q.answered=false;
+function shake(e){e.classList.remove('shake');void e.offsetWidth;e.classList.add('shake')}
+function answerTxt(q){return q.kind==='num'?fmt(q.answer):q.answer}
+function hintFor(q,v){var t=(q.trap&&q.kind==='num'&&v!=null)?q.trap(v):null;return t||q.hint||RULES[q.skill]}
+function makeHow(skill){var box=el('div',{class:'howbox'});box.hidden=true;var b=el('button',{class:'howbtn',type:'button',text:'¿Cómo se hace?'});
+  b.addEventListener('click',function(){if(box.hidden){box.textContent='';box.appendChild(guideBody(skill,true));box.hidden=false;b.textContent='Ocultar explicación'}else{box.hidden=true;b.textContent='¿Cómo se hace?'}});return {btn:b,box:box}}
+function startQuiz(o){var st=stats().sk;Q={titulo:o.titulo,list:o.list||buildQuestions(o.skills,o.n,st),i:0,res:[],paso:o.paso||null,t0:Date.now()};openOv();play('whistle');renderQ()}
+function renderQ(){var w=$('#ovIn');w.textContent='';var q=Q.list[Q.i];Q.tries=0;Q.done=false;Q.answers=[];
+  var prog=el('div',{class:'prog'});Q.list.forEach(function(x,i){prog.appendChild(el('i',{class:i<Q.res.length?(Q.res[i].ok?(Q.res[i].pista?'pi':'ok'):'ko'):i===Q.i?'now':''}))});
+  w.appendChild(ovTop(Q.titulo));w.appendChild(prog);var how=makeHow(q.skill);
+  var card=el('div',{class:'qcard pop'},[el('div',{class:'qhead'},[el('div',{class:'qskill',text:'Pregunta '+(Q.i+1)+' de '+Q.list.length+' · '+SK[q.skill].nombre}),how.btn]),el('div',{class:'qtext'+(q.long?' long':''),text:q.text})]);
+  var fbBox=el('div');
   if(q.kind==='num'){var inp=el('input',{id:'qin',type:'text',inputmode:'numeric',autocomplete:'off','aria-label':'Tu respuesta',placeholder:'Tu respuesta'});
-    var btn=el('button',{class:'btn',type:'button',text:'Comprobar'});var go=function(){if(Q.answered){nextQ();return}var v=parseNum(inp.value);if(v===null){inp.classList.remove('shake');void inp.offsetWidth;inp.classList.add('shake');return}inp.disabled=true;btn.textContent='Siguiente';check(v,String(inp.value).trim(),fbBox)};
-    btn.addEventListener('click',go);inp.addEventListener('keydown',function(e){if(e.key==='Enter')go()});card.appendChild(el('div',{class:'answer'},[inp,btn]));card.appendChild(fbBox);w.appendChild(card);setTimeout(function(){try{inp.focus()}catch(e){}},50)}
-  else{var ops=el('div',{class:'opts'});q.options.forEach(function(op){var b=el('button',{class:'opt',type:'button',text:op});b.addEventListener('click',function(){if(Q.answered)return;ops.querySelectorAll('button').forEach(function(x){x.disabled=true;if(x.textContent===q.answer)x.classList.add('right')});if(op!==q.answer)b.classList.add('wrong');check(op,op,fbBox);
-      fbBox.appendChild(el('button',{class:'btn',type:'button',text:Q.i+1<Q.list.length?'Siguiente':'Ver resultado',style:'margin-top:8px',onclick:nextQ}))});ops.appendChild(b)});card.appendChild(ops);card.appendChild(fbBox);w.appendChild(card)}}
-function check(v,raw,box){var q=Q.list[Q.i];Q.answered=true;var ok=q.kind==='num'?v===q.answer:v===q.answer;
-  Q.res.push({ok:ok,s:q.skill,q:plainQ(q),r:raw,c:q.kind==='num'?fmt(q.answer):q.answer,obj:q});
-  box.textContent='';var fb=el('div',{class:'fb '+(ok?'ok':'ko')+' pop'});
-  if(ok){fb.appendChild(el('div',{class:'h',text:pick(['¡Golazo!','¡Qué pase!','¡Crack!','¡Al ángulo!','¡Perfecto!'])}));fb.appendChild(el('div',{class:'x',text:q.explain}));play('ok')}
-  else{fb.appendChild(el('div',{class:'h',text:'Casi. Era '+(q.kind==='num'?fmt(q.answer):q.answer)}));var t=q.trap&&q.kind==='num'?q.trap(v):null;if(t)fb.appendChild(el('div',{class:'trap',text:t}));fb.appendChild(el('div',{class:'x',text:q.explain}));play('ko')}
-  box.appendChild(fb);var p=$('.prog i.now');if(p){p.className=ok?'ok':'ko'}}
+    var btn=el('button',{class:'btn',type:'button',text:'Comprobar'});
+    var go=function(){if(Q.done){nextQ();return}var v=parseNum(inp.value);if(v===null){shake(inp);return}attempt(v,String(inp.value).trim(),fbBox,{inp:inp,btn:btn})};
+    btn.addEventListener('click',go);inp.addEventListener('keydown',function(e){if(e.key==='Enter')go()});
+    card.appendChild(el('div',{class:'answer'},[inp,btn]));card.appendChild(fbBox);card.appendChild(how.box);w.appendChild(card);setTimeout(function(){try{inp.focus()}catch(e){}},50)}
+  else{var ops=el('div',{class:'opts'});q.options.forEach(function(op){var b=el('button',{class:'opt',type:'button',text:op});b.addEventListener('click',function(){if(Q.done)return;attempt(op,op,fbBox,{ops:ops,b:b})});ops.appendChild(b)});
+    card.appendChild(ops);card.appendChild(fbBox);card.appendChild(how.box);w.appendChild(card)}}
+function attempt(v,raw,box,ui){var q=Q.list[Q.i];Q.answers.push(raw);box.textContent='';
+  if(v===q.answer){finishQ(true,Q.tries>0,box,ui,v);return}
+  if(Q.tries===0){Q.tries=1;play('hint');
+    if(ui.b){ui.b.classList.add('wrong');ui.b.disabled=true}
+    if(ui.inp){shake(ui.inp);try{ui.inp.select()}catch(e){}}
+    box.appendChild(el('div',{class:'fb hint pop'},[el('div',{class:'h',text:'Pista'}),el('div',{class:'x',text:hintFor(q,v)}),el('div',{class:'sub',text:'Vuelve a intentarlo. Si quieres, pulsa «¿Cómo se hace?».'})]));return}
+  if(ui.b)ui.b.classList.add('wrong');finishQ(false,true,box,ui,v)}
+function finishQ(ok,pista,box,ui,v){var q=Q.list[Q.i];Q.done=true;var last=Q.i+1>=Q.list.length;
+  Q.res.push({ok:ok,pista:ok&&pista,s:q.skill,q:q.text,r:Q.answers.join(' → '),c:answerTxt(q),obj:q});
+  if(ui.ops)ui.ops.querySelectorAll('button').forEach(function(x){x.disabled=true;if(x.textContent===q.answer)x.classList.add('right')});
+  if(ui.inp){ui.inp.disabled=true;ui.btn.textContent=last?'Ver resultado':'Siguiente'}
+  var fb=el('div',{class:'fb '+(ok?'ok':'ko')+' pop'});
+  if(ok){fb.appendChild(el('div',{class:'h',text:pista?pick(['¡Eso es! Con pista también vale.','¡Bien! A la segunda.','¡Ahora sí!']):pick(['¡Golazo!','¡Qué pase!','¡Crack!','¡Al ángulo!','¡Perfecto!'])}));fb.appendChild(el('div',{class:'x',text:q.explain}));play('ok')}
+  else{fb.appendChild(el('div',{class:'h',text:'Era '+answerTxt(q)}));var t=(q.trap&&q.kind==='num'&&v!=null)?q.trap(v):null;if(t)fb.appendChild(el('div',{class:'trap',text:t}));fb.appendChild(el('div',{class:'x',text:'Así se hace: '+q.explain}));play('ko')}
+  if(ui.ops)fb.appendChild(el('button',{class:'btn',type:'button',text:last?'Ver resultado':'Siguiente',style:'margin-top:8px',onclick:nextQ}));
+  box.appendChild(fb);var p=$('.prog i.now');if(p)p.className=ok?(pista?'pi':'ok'):'ko'}
 function nextQ(){Q.i++;if(Q.i<Q.list.length)renderQ();else endQuiz()}
-function buildIntento(modo,titulo,res,paso,dur){var ps={},ok=0,err=[];res.forEach(function(r){ps[r.s]=ps[r.s]||{ok:0,t:0};ps[r.s].t++;if(r.ok){ps[r.s].ok++;ok++}else if(err.length<25)err.push({s:r.s,q:r.q,r:r.r,c:r.c})});
-  return {ts:Date.now(),fecha:todayStr(),modo:modo,titulo:titulo,paso:paso||null,ok:ok,total:res.length,porSkill:ps,errores:err,dur:dur}}
+function buildIntento(modo,titulo,res,paso,dur){var ps={},ok=0,pi=0,err=[];res.forEach(function(r){ps[r.s]=ps[r.s]||{ok:0,t:0,p:0};ps[r.s].t++;if(r.ok){ps[r.s].ok++;ok++;if(r.pista){ps[r.s].p++;pi++}}else if(err.length<25)err.push({s:r.s,q:r.q,r:r.r,c:r.c})});
+  return {ts:Date.now(),fecha:todayStr(),modo:modo,titulo:titulo,paso:paso||null,ok:ok,pista:pi,total:res.length,porSkill:ps,errores:err,dur:dur}}
 function endQuiz(){var dur=Math.round((Date.now()-Q.t0)/1000),it=buildIntento('quiz',Q.titulo,Q.res,Q.paso,dur);saveIntento(it);
-  var ok=it.ok,n=it.total,pct=Math.round(ok/n*100),w=$('#ovIn');w.textContent='';w.appendChild(ovTop(Q.titulo));
-  var msg=pct>=90?'¡Partidazo! Así se juega una final.':pct>=70?'Buen partido. Repasa los fallos y a por más.':pct>=50?'Empate. Hay que entrenar estos fallos.':'Partido difícil. Repite los fallos con calma: ahí está la mejora.';
-  var c=el('div',{class:'qcard final pop'},[el('div',{class:'eyebrow',text:'Resultado'}),el('div',{class:'score',html:ok+'<small>/'+n+'</small>'}),el('p',{style:'margin:0;font-weight:700;font-size:19px',text:msg})]);
-  var fails=Q.res.filter(function(r){return !r.ok});var row=el('div',{class:'row',style:'justify-content:center'});
-  if(fails.length)row.appendChild(el('button',{class:'btn sol',type:'button',text:'Repetir los '+fails.length+' fallos',onclick:function(){startQuiz({titulo:'Repaso de fallos',list:shuffle(fails.map(function(f){return f.obj}))})}}));
+  var ok=it.ok,n=it.total,pi=it.pista,fal=n-ok,pct=Math.round(ok/n*100),w=$('#ovIn');w.textContent='';w.appendChild(ovTop(Q.titulo));
+  var msg=pct>=90?'¡Partidazo! Así se juega una final.':pct>=70?'Buen partido. Repasa lo que costó y a por más.':pct>=50?'Empate. Hay que entrenar lo que costó.':'Partido difícil. Lee «Cómo se hace» y repite con calma: ahí está la mejora.';
+  var c=el('div',{class:'qcard final pop'},[el('div',{class:'eyebrow',text:'Resultado'}),el('div',{class:'score',html:ok+'<small>/'+n+'</small>'}),
+    el('p',{class:'num',style:'margin:0;font-weight:700',text:(ok-pi)+' a la primera · '+pi+' con pista · '+fal+' falladas'}),el('p',{style:'margin:0;font-weight:700;font-size:19px',text:msg})]);
+  var hard=Q.res.filter(function(r){return !r.ok||r.pista});var row=el('div',{class:'row',style:'justify-content:center'});
+  if(hard.length)row.appendChild(el('button',{class:'btn sol',type:'button',text:'Repetir las '+hard.length+' que costaron',onclick:function(){startQuiz({titulo:'Repaso de lo que costó',list:shuffle(hard.map(function(f){return f.obj}))})}}));
   row.appendChild(botonPato('ghost'));row.appendChild(el('button',{class:'btn ghost',type:'button',text:'Volver',onclick:closeOv}));c.appendChild(row);w.appendChild(c);
-  if(fails.length){var l=el('div',{class:'card'},[el('h3',{text:'Para repasar'})]);fails.forEach(function(f){l.appendChild(el('div',{class:'err'},[el('span',{class:'q',text:f.q}),el('span',{class:'a'},['Pusiste ',el('b',{class:'r',text:f.r}),' · era ',el('b',{class:'c',text:f.c})]),el('span',{class:'a',text:f.obj.explain})]))});w.appendChild(l)}
+  if(hard.length){var l=el('div',{class:'card'},[el('h3',{text:'Para repasar'})]);hard.forEach(function(f){l.appendChild(el('div',{class:'err'},[el('span',{class:'q',text:f.q}),
+    el('span',{class:'a'},[f.ok?'Con pista. Respuestas: ':'Fallada. Respuestas: ',el('b',{class:f.ok?'c':'r',text:f.r}),' · era ',el('b',{class:'c',text:f.c})]),el('span',{class:'a',text:f.obj.explain})]))});w.appendChild(l)}
   if(pct>=70){play('win');confetti()}else play('whistle')}
 
 /* ---------- juegos ---------- */
@@ -845,66 +925,92 @@ function penaltis(o){var skills=o.skills||['cuad','pot10','comb','desc10','raiz'
       '<g class="keeper" id="keeper"><rect x="155" y="88" width="30" height="50" rx="10" fill="var(--sol)"/><circle cx="170" cy="78" r="11" fill="var(--sol)"/><path d="M155 100l-20-14M185 100l20-14" stroke="var(--sol)" stroke-width="8" stroke-linecap="round"/></g>'+
       '<g class="ball" id="ball"><circle cx="170" cy="185" r="11" fill="var(--surface)" stroke="var(--ink)" stroke-width="3"/><path d="m170 179 5 4-2 6h-6l-2-6z" fill="var(--ink)"/></g></svg>';
     w.insertAdjacentHTML('beforeend',svg);
-    if(OV.shot<5){var q=qs[OV.shot];var inp=el('input',{type:'text',inputmode:'numeric',autocomplete:'off','aria-label':'Tu respuesta',placeholder:'?'});var btn=el('button',{class:'btn sol',type:'button',text:'¡Tirar!'});
-      var card=el('div',{class:'qcard'},[el('div',{class:'qskill',text:'Tiro '+(OV.shot+1)+' de 5 · '+SK[q.skill].nombre}),el('div',{class:'qtext',text:q.text}),el('div',{class:'answer'},[inp,btn])]);w.appendChild(card);
-      var go=function(){var v=parseNum(inp.value);if(v===null){inp.classList.remove('shake');void inp.offsetWidth;inp.classList.add('shake');return}btn.disabled=true;inp.disabled=true;shoot(q,v,String(inp.value).trim(),card)};
-      btn.addEventListener('click',go);inp.addEventListener('keydown',function(e){if(e.key==='Enter')go()});setTimeout(function(){try{inp.focus()}catch(e){}},50)}
+    if(OV.shot<5){var q=qs[OV.shot];OV.tries=0;OV.ans=[];var how=makeHow(q.skill);
+      var inp=el('input',{type:'text',inputmode:'numeric',autocomplete:'off','aria-label':'Tu respuesta',placeholder:'?'});var btn=el('button',{class:'btn sol',type:'button',text:'¡Tirar!'});var fb=el('div');
+      var card=el('div',{class:'qcard'},[el('div',{class:'qhead'},[el('div',{class:'qskill',text:'Tiro '+(OV.shot+1)+' de 5 · '+SK[q.skill].nombre}),how.btn]),el('div',{class:'qtext',text:q.text}),el('div',{class:'answer'},[inp,btn]),fb,how.box]);w.appendChild(card);
+      var go=function(){var v=parseNum(inp.value);if(v===null){shake(inp);return}OV.ans.push(String(inp.value).trim());
+        if(v===q.answer){btn.disabled=true;inp.disabled=true;shoot(q,true,v,fb);return}
+        if(OV.tries===0){OV.tries=1;play('hint');var kp=$('#keeper');if(kp)kp.style.transform='translateY(14px) scale(1.08)';fb.textContent='';
+          fb.appendChild(el('div',{class:'fb hint pop'},[el('div',{class:'h',text:'¡El portero se adelanta! Repite el tiro'}),el('div',{class:'x',text:hintFor(q,v)})]));shake(inp);try{inp.select()}catch(e){}return}
+        btn.disabled=true;inp.disabled=true;shoot(q,false,v,fb)};
+      btn.addEventListener('click',go);inp.addEventListener('keydown',function(e){if(e.key==='Enter'&&!btn.disabled)go()});setTimeout(function(){try{inp.focus()}catch(e){}},50)}
     else finish()}
-  function shoot(q,v,raw,card){var ok=v===q.answer;OV.res.push({ok:ok,s:q.skill,q:q.text,r:raw,c:fmt(q.answer),obj:q});if(ok)OV.goals++;
+  function shoot(q,ok,v,fb){var pista=ok&&OV.tries>0;OV.res.push({ok:ok,pista:pista,s:q.skill,q:q.text,r:OV.ans.join(' → '),c:fmt(q.answer),obj:q});if(ok)OV.goals++;
     var tx=pick([-95,-60,60,95]),ty=pick([-120,-95]);var ball=$('#ball'),kp=$('#keeper');play('kick');
     ball.style.transform='translate('+tx+'px,'+ty+'px) scale(.8)';kp.style.transform=ok?'translate('+(tx>0?-70:70)+'px,0) rotate('+(tx>0?-25:25)+'deg)':'translate('+tx+'px,'+(ty+50)+'px) rotate('+(tx>0?25:-25)+'deg)';
-    setTimeout(function(){if(ok){play('goal')}else{play('save')}var fb=el('div',{class:'fb '+(ok?'ok':'ko')+' pop'},[el('div',{class:'h',text:ok?'¡GOOOL!':'¡Parada! Era '+fmt(q.answer)}),el('div',{class:'x',text:q.explain})]);
-      if(!ok&&q.trap){var t=q.trap(v);if(t)fb.insertBefore(el('div',{class:'trap',text:t}),fb.lastChild)}
-      fb.appendChild(el('button',{class:'btn',type:'button',text:OV.shot<4?'Siguiente tiro':'Ver resultado',style:'margin-top:8px',onclick:function(){OV.shot++;draw()}}));card.appendChild(fb)},600)}
+    setTimeout(function(){play(ok?'goal':'save');fb.textContent='';var f=el('div',{class:'fb '+(ok?'ok':'ko')+' pop'},[el('div',{class:'h',text:ok?(pista?'¡GOOOL! A la segunda':'¡GOOOL!'):'¡Parada! Era '+fmt(q.answer)})]);
+      if(!ok){var t=q.trap?q.trap(v):null;if(t)f.appendChild(el('div',{class:'trap',text:t}))}
+      f.appendChild(el('div',{class:'x',text:(ok?'':'Así se hace: ')+q.explain}));
+      f.appendChild(el('button',{class:'btn',type:'button',text:OV.shot<4?'Siguiente tiro':'Ver resultado',style:'margin-top:8px',onclick:function(){OV.shot++;draw()}}));fb.appendChild(f)},600)}
   function finish(){var it=buildIntento('juego','Tanda de penaltis',OV.res,OV.paso,Math.round((Date.now()-OV.t0)/1000));saveIntento(it);
-    var c=el('div',{class:'qcard final pop'},[el('div',{class:'eyebrow',text:'Resultado'}),el('div',{class:'score',html:OV.goals+'<small>/5</small>'}),el('p',{style:'margin:0;font-weight:700;font-size:19px',text:OV.goals>=4?'¡Campeones! Tanda perfecta del 10.':OV.goals>=3?'Ganada por poco. ¡Bien!':'Esta vez paró el portero. ¡Revancha!'}),
+    var c=el('div',{class:'qcard final pop'},[el('div',{class:'eyebrow',text:'Resultado'}),el('div',{class:'score',html:OV.goals+'<small>/5</small>'}),el('p',{style:'margin:0;font-weight:700;font-size:19px',text:OV.goals>=4?'¡Campeones! Tanda del 10.':OV.goals>=3?'Ganada por poco. ¡Bien!':'Esta vez paró el portero. ¡Revancha!'}),
       el('div',{class:'row',style:'justify-content:center'},[el('button',{class:'btn sol',type:'button',text:'Otra tanda',onclick:function(){penaltis(o)}}),el('button',{class:'btn ghost',type:'button',text:'Volver',onclick:closeOv})])]);
     w.appendChild(c);if(OV.goals>=4){play('win');confetti()}}
   draw()}
 
-function quickQ(){var r=Math.random(),n,a,b;if(r<0.35){n=rnd(2,12);return {skill:'cuad',text:n+'² = ?',answer:n*n}}if(r<0.55){n=rnd(2,5);return {skill:'cuad',text:n+'³ = ?',answer:n*n*n}}if(r<0.7){n=rnd(2,7);return {skill:'pot10',text:'10'+sup(n)+' = ?',answer:Math.pow(10,n)}}
-  if(r<0.82){n=rnd(2,12);return {skill:'raiz',text:'√'+(n*n)+' = ?',answer:n}}a=rnd(2,20);b=rnd(2,9);var c=rnd(2,9);return {skill:'comb',text:a+' + '+b+' × '+c+' = ?',answer:a+b*c}}
-function contrarreloj(o){OV={res:[],t:60,streak:0,best:0,t0:Date.now(),paso:o.paso};openOv();var w=$('#ovIn');w.textContent='';w.appendChild(ovTop('Contrarreloj'));
+function quickQ(){var r=Math.random(),n,a,b,c;
+  if(r<0.35){n=rnd(2,12);return {skill:'cuad',text:n+'² = ?',answer:n*n,hint:'El '+n+' dos veces: '+n+' × '+n+'.'}}
+  if(r<0.55){n=rnd(2,5);return {skill:'cuad',text:n+'³ = ?',answer:n*n*n,hint:'Tres veces: '+n+' × '+n+' × '+n+'. Primero '+n+' × '+n+'.'}}
+  if(r<0.7){n=rnd(2,7);return {skill:'pot10',text:'10'+sup(n)+' = ?',answer:Math.pow(10,n),hint:'Un 1 y detrás '+n+' ceros.'}}
+  if(r<0.82){n=rnd(2,12);return {skill:'raiz',text:'√'+(n*n)+' = ?',answer:n,hint:'¿Qué número multiplicado por sí mismo da '+(n*n)+'?'}}
+  a=rnd(2,20);b=rnd(2,9);c=rnd(2,9);return {skill:'comb',text:a+' + '+b+' × '+c+' = ?',answer:a+b*c,hint:'Primero la multiplicación: '+b+' × '+c+'. Después suma el '+a+'.'}}
+function contrarreloj(o){OV={res:[],t:60,streak:0,best:0,t0:Date.now(),paso:o.paso,tries:0,ans:[]};openOv();var w=$('#ovIn');w.textContent='';w.appendChild(ovTop('Contrarreloj'));
   var tm=el('div',{class:'timer',text:'60'}),pases=el('div',{class:'chip'},[el('strong',{text:'0'}),' pases']),racha=el('div',{class:'chip'},[el('strong',{text:'0'}),' seguidos']);
   w.appendChild(el('div',{class:'row',style:'justify-content:space-between'},[tm,el('div',{class:'row'},[pases,racha])]));
-  var qt=el('div',{class:'qtext'}),inp=el('input',{type:'text',inputmode:'numeric',autocomplete:'off','aria-label':'Tu respuesta',placeholder:'?'}),btn=el('button',{class:'btn',type:'button',text:'Pasar'});
-  var card=el('div',{class:'qcard'},[el('div',{class:'qskill',text:'Responde y pulsa Enter'}),qt,el('div',{class:'answer'},[inp,btn])]);w.appendChild(card);
+  var qt=el('div',{class:'qtext'}),inp=el('input',{type:'text',inputmode:'numeric',autocomplete:'off','aria-label':'Tu respuesta',placeholder:'?'}),btn=el('button',{class:'btn',type:'button',text:'Pasar'}),msg=el('div',{class:'fb hint'});msg.hidden=true;
+  var card=el('div',{class:'qcard'},[el('div',{class:'qskill',text:'Responde y pulsa Enter · si fallas, sale una pista'}),qt,el('div',{class:'answer'},[inp,btn]),msg]);w.appendChild(card);
   var start=el('button',{class:'btn sol',type:'button',text:'¡Empezar!'});w.appendChild(start);inp.disabled=true;btn.disabled=true;var cur;
-  function nq(){cur=quickQ();qt.textContent=cur.text;inp.value='';inp.focus()}
-  function go(){if(OV.t<=0)return;var v=parseNum(inp.value);if(v===null)return;var ok=v===cur.answer;OV.res.push({ok:ok,s:cur.skill,q:cur.text,r:String(inp.value),c:fmt(cur.answer),obj:cur});
-    if(ok){OV.streak++;OV.best=Math.max(OV.best,OV.streak);play('ok')}else{OV.streak=0;play('ko');card.classList.remove('shake');void card.offsetWidth;card.classList.add('shake')}
-    pases.firstChild.textContent=OV.res.filter(function(r){return r.ok}).length;racha.firstChild.textContent=OV.streak;nq()}
+  function nq(){cur=quickQ();OV.tries=0;OV.ans=[];qt.textContent=cur.text;inp.value='';try{inp.focus()}catch(e){}}
+  function say(cls,head,txt){msg.className='fb '+cls+' pop';msg.textContent='';msg.appendChild(el('div',{class:'h',style:'font-size:20px',text:head}));msg.appendChild(el('div',{class:'x',text:txt}));msg.hidden=false}
+  function go(){if(OV.t<=0)return;var v=parseNum(inp.value);if(v===null)return;OV.ans.push(String(inp.value).trim());
+    if(v===cur.answer){OV.res.push({ok:true,pista:OV.tries>0,s:cur.skill,q:cur.text,r:OV.ans.join(' → '),c:fmt(cur.answer)});OV.streak++;OV.best=Math.max(OV.best,OV.streak);play('ok');msg.hidden=true;nq()}
+    else if(OV.tries===0){OV.tries=1;play('hint');say('hint','Pista',cur.hint);shake(card);try{inp.select()}catch(e){}}
+    else{OV.res.push({ok:false,s:cur.skill,q:cur.text,r:OV.ans.join(' → '),c:fmt(cur.answer)});OV.streak=0;play('ko');say('ko','Era '+fmt(cur.answer),cur.text.replace(' = ?','')+' = '+fmt(cur.answer)+'. ¡A por la siguiente!');nq()}
+    pases.firstChild.textContent=OV.res.filter(function(r){return r.ok}).length;racha.firstChild.textContent=OV.streak}
   btn.addEventListener('click',go);inp.addEventListener('keydown',function(e){if(e.key==='Enter')go()});
   start.addEventListener('click',function(){start.remove();play('whistle');inp.disabled=false;btn.disabled=false;nq();OV.timer=setInterval(function(){OV.t--;tm.textContent=OV.t;if(OV.t<=10){tm.classList.add('low');play('tick')}if(OV.t<=0){clearInterval(OV.timer);OV.timer=null;end()}},1000)});
   function end(){inp.disabled=true;btn.disabled=true;play('whistle');var ok=OV.res.filter(function(r){return r.ok}).length;
     if(OV.res.length)saveIntento(buildIntento('juego','Contrarreloj',OV.res,OV.paso,60));
-    card.replaceWith(el('div',{class:'qcard final pop'},[el('div',{class:'eyebrow',text:'Final'}),el('div',{class:'score',html:ok+'<small> pases</small>'}),el('p',{style:'margin:0;font-weight:700',text:'Mejor racha: '+OV.best+' seguidos · '+(OV.res.length-ok)+' fallos'}),
+    card.replaceWith(el('div',{class:'qcard final pop'},[el('div',{class:'eyebrow',text:'Final'}),el('div',{class:'score',html:ok+'<small> pases</small>'}),el('p',{style:'margin:0;font-weight:700',text:'Mejor racha: '+OV.best+' seguidos · '+(OV.res.length-ok)+' falladas'}),
       el('div',{class:'row',style:'justify-content:center'},[el('button',{class:'btn sol',type:'button',text:'Otra vez',onclick:function(){contrarreloj(o)}}),el('button',{class:'btn ghost',type:'button',text:'Volver',onclick:closeOv})])]));if(ok>=12){play('win');confetti()}}}
 
 function primero(o){var exprs=[];while(exprs.length<6){var s=genExpr();if(tok(s).filter(function(x){return typeof x==='string'&&'+−×:'.indexOf(x)>=0}).length>=2&&exprs.indexOf(s)<0)exprs.push(s)}
   OV={k:0,res:[],t0:Date.now(),paso:o.paso};openOv();var w=$('#ovIn');
-  function draw(){w.textContent='';w.appendChild(ovTop('¿Qué va primero?'));var s=exprs[OV.k],t=tok(s),trail=[tstr(t)],errs=0;
-    var info=el('div',{class:'qskill',text:'Jugada '+(OV.k+1)+' de 6 · Toca la operación que se hace antes'});var ex=el('div',{class:'expr'}),tr=el('div',{class:'trail'}),fb=el('div');
-    var card=el('div',{class:'qcard'},[info,ex,tr,fb]);w.appendChild(card);
-    function paint(){ex.textContent='';t.forEach(function(x,i){if(typeof x==='number')ex.appendChild(el('span',{class:'n',text:fmt(x)}));else if(x==='('||x===')')ex.appendChild(el('span',{class:'p',text:x}));
-        else{var b=el('button',{class:'o',type:'button',text:x,'aria-label':'Operación '+x});b.addEventListener('click',function(){var right=nextOp(t);if(i===right){play('ok');t=applyOp(t,i);trail.push(tstr(t));tr.textContent='';trail.forEach(function(z){tr.appendChild(el('span',{text:z}))});if(t.length===1)done();else paint()}
-          else{errs++;play('ko');b.classList.add('bad');fb.textContent='';fb.appendChild(el('div',{class:'fb ko pop'},[el('div',{class:'trap',text:(t.indexOf('(')>=0&&!(i>t.lastIndexOf('(')&&i<t.indexOf(')'))?'Primero lo que está entre paréntesis.':(x==='+'||x==='−')&&t.some(function(y){return y==='×'||y===':'})?'Antes van × y :, después + y −.':'Mismo nivel: de izquierda a derecha.')}) ]))}});ex.appendChild(b)}})}
-    function done(){fb.textContent='';var ok=errs===0;OV.res.push({ok:ok,s:'comb',q:s+' = ?',r:ok?fmt(t[0]):'orden equivocado',c:fmt(t[0]),obj:null});
-      fb.appendChild(el('div',{class:'fb '+(ok?'ok':'ko')+' pop'},[el('div',{class:'h',text:ok?'¡Jugada perfecta! = '+fmt(t[0]):'Resultado: '+fmt(t[0])+' · '+errs+' toque'+(errs>1?'s':'')+' de más'}),el('button',{class:'btn',type:'button',text:OV.k<5?'Siguiente jugada':'Ver resultado',onclick:function(){OV.k++;if(OV.k<6)draw();else fin()}})]));if(ok)play('goal')}
+  function draw(){w.textContent='';w.appendChild(ovTop('¿Qué va primero?'));var s=exprs[OV.k],t=tok(s),trail=[tstr(t)],errs=0,stepErr=0,two=false;
+    var how=makeHow('comb');var info=el('div',{class:'qhead'},[el('div',{class:'qskill',text:'Jugada '+(OV.k+1)+' de 6 · Toca la operación que se hace antes'}),how.btn]);var ex=el('div',{class:'expr'}),tr=el('div',{class:'trail'}),fb=el('div');
+    var card=el('div',{class:'qcard'},[info,ex,tr,fb,how.box]);w.appendChild(card);
+    function why(i,x){return (t.indexOf('(')>=0&&!(i>t.lastIndexOf('(')&&i<t.indexOf(')')))?'Primero lo que está entre paréntesis.':((x==='+'||x==='−')&&t.some(function(y){return y==='×'||y===':'}))?'Antes van × y :, después + y −.':'Si están al mismo nivel, se hace de izquierda a derecha.'}
+    function paint(){ex.textContent='';var btns={};t.forEach(function(x,i){if(typeof x==='number')ex.appendChild(el('span',{class:'n',text:fmt(x)}));else if(x==='('||x===')')ex.appendChild(el('span',{class:'p',text:x}));
+        else{var b=el('button',{class:'o',type:'button',text:x,'aria-label':'Operación '+x});btns[i]=b;b.addEventListener('click',function(){var right=nextOp(t);
+          if(i===right){play('ok');stepErr=0;fb.textContent='';t=applyOp(t,i);trail.push(tstr(t));tr.textContent='';trail.forEach(function(z){tr.appendChild(el('span',{text:z}))});if(t.length===1)done();else paint()}
+          else{errs++;stepErr++;b.classList.add('bad');fb.textContent='';
+            if(stepErr===1){play('hint');fb.appendChild(el('div',{class:'fb hint pop'},[el('div',{class:'h',text:'Pista'}),el('div',{class:'x',text:why(i,x)})]))}
+            else{two=true;play('ko');if(btns[right])btns[right].classList.add('show');fb.appendChild(el('div',{class:'fb ko pop'},[el('div',{class:'h',text:'Va primero la amarilla'}),el('div',{class:'x',text:fmt(t[right-1])+' '+t[right]+' '+fmt(t[right+1])+'. '+why(i,x)+' Tócala para seguir.'})]))}}});ex.appendChild(b)}})}
+    function done(){fb.textContent='';var ok=!two;OV.res.push({ok:ok,pista:ok&&errs>0,s:'comb',q:s+' = ?',r:ok?fmt(t[0]):'orden equivocado',c:fmt(t[0])});
+      fb.appendChild(el('div',{class:'fb '+(ok?'ok':'ko')+' pop'},[el('div',{class:'h',text:errs===0?'¡Jugada perfecta! = '+fmt(t[0]):ok?'¡Bien, con pista! = '+fmt(t[0]):'Resultado: '+fmt(t[0])}),el('button',{class:'btn',type:'button',text:OV.k<5?'Siguiente jugada':'Ver resultado',onclick:function(){OV.k++;if(OV.k<6)draw();else fin()}})]));if(errs===0)play('goal')}
     paint()}
-  function fin(){saveIntento(buildIntento('juego','¿Qué va primero?',OV.res,OV.paso,Math.round((Date.now()-OV.t0)/1000)));var ok=OV.res.filter(function(r){return r.ok}).length;w.textContent='';w.appendChild(ovTop('¿Qué va primero?'));
+  function fin(){saveIntento(buildIntento('juego','¿Qué va primero?',OV.res,OV.paso,Math.round((Date.now()-OV.t0)/1000)));var ok=OV.res.filter(function(r){return r.ok&&!r.pista}).length;w.textContent='';w.appendChild(ovTop('¿Qué va primero?'));
     w.appendChild(el('div',{class:'qcard final pop'},[el('div',{class:'eyebrow',text:'Jugadas perfectas'}),el('div',{class:'score',html:ok+'<small>/6</small>'}),el('p',{style:'margin:0;font-weight:700',text:'Recuerda: paréntesis → × y : → + y −.'}),el('div',{class:'row',style:'justify-content:center'},[el('button',{class:'btn sol',type:'button',text:'Otra ronda',onclick:function(){primero(o)}}),el('button',{class:'btn ghost',type:'button',text:'Volver',onclick:closeOv})])]));if(ok>=5){play('win');confetti()}}
   play('whistle');draw()}
 
-function parejas(o){var pool=[],used={};while(pool.length<6){var r=Math.random(),a,b,s,n;if(r<0.35){n=rnd(2,12);a=n+'²';b=fmt(n*n);s='cuad'}else if(r<0.6){n=rnd(2,6);a=n+'³';b=fmt(n*n*n);s='cuad'}else if(r<0.8){n=rnd(2,6);a='10'+sup(n);b=fmt(Math.pow(10,n));s='pot10'}else{n=rnd(2,12);a='√'+(n*n);b=String(n);s='raiz'}
-    if(used[a]||used['v'+b])continue;used[a]=1;used['v'+b]=1;pool.push({a:a,b:b,s:s})}
-  var cards=shuffle([].concat.apply([],pool.map(function(p,i){return [{t:p.a,k:i},{t:p.b,k:i}]})));OV={open:[],found:0,miss:0,res:[],t0:Date.now(),paso:o.paso,lock:false};openOv();play('whistle');
-  var w=$('#ovIn');w.textContent='';w.appendChild(ovTop('Parejas'));var info=el('p',{class:'muted',style:'margin:0',text:'Da la vuelta a dos cartas. Une cada potencia o raíz con su resultado.'});w.appendChild(info);
+function parejas(o){var pool=[],used={};while(pool.length<6){var r=Math.random(),a,b,s,n,h;
+    if(r<0.35){n=rnd(2,12);a=n+'²';b=fmt(n*n);s='cuad';h=n+'² = '+n+' × '+n+'. Haz la multiplicación y busca el resultado.'}
+    else if(r<0.6){n=rnd(2,6);a=n+'³';b=fmt(n*n*n);s='cuad';h=n+'³ = '+n+' × '+n+' × '+n+'. Haz la multiplicación y busca el resultado.'}
+    else if(r<0.8){n=rnd(2,6);a='10'+sup(n);b=fmt(Math.pow(10,n));s='pot10';h='10'+sup(n)+' es un 1 con '+n+' ceros detrás.'}
+    else{n=rnd(2,12);a='√'+(n*n);b=String(n);s='raiz';h='√'+(n*n)+': ¿qué número multiplicado por sí mismo da '+(n*n)+'?'}
+    if(used[a]||used['v'+b])continue;used[a]=1;used['v'+b]=1;pool.push({a:a,b:b,s:s,h:h})}
+  var cards=shuffle([].concat.apply([],pool.map(function(p,i){return [{t:p.a,k:i,e:true},{t:p.b,k:i}]})));OV={open:[],found:0,miss:0,mk:{},t0:Date.now(),paso:o.paso,lock:false};openOv();play('whistle');
+  var w=$('#ovIn');w.textContent='';w.appendChild(ovTop('Parejas'));w.appendChild(el('p',{class:'muted',style:'margin:0',text:'Da la vuelta a dos cartas. Une cada potencia o raíz con su resultado.'}));
+  var msg=el('div',{class:'fb hint'});msg.hidden=true;
+  function say(cls,head,txt){msg.className='fb '+cls+' pop';msg.textContent='';msg.appendChild(el('div',{class:'h',style:'font-size:20px',text:head}));msg.appendChild(el('div',{class:'x',text:txt}));msg.hidden=false}
   var g=el('div',{class:'memo'});cards.forEach(function(c){var b=el('button',{class:'mc',type:'button',text:c.t,'aria-label':'Carta'});c.b=b;b.addEventListener('click',function(){if(OV.lock||b.classList.contains('up')||b.classList.contains('done'))return;b.classList.add('up');play('tick');OV.open.push(c);
-      if(OV.open.length===2){var x=OV.open[0],y=OV.open[1];OV.lock=true;if(x.k===y.k){setTimeout(function(){x.b.classList.add('done');y.b.classList.add('done');OV.found++;OV.res.push({ok:true,s:pool[x.k].s,q:pool[x.k].a,r:pool[x.k].b,c:pool[x.k].b});play('ok');OV.open=[];OV.lock=false;if(OV.found===6)fin()},300)}
-        else{OV.miss++;setTimeout(function(){x.b.classList.remove('up');y.b.classList.remove('up');OV.open=[];OV.lock=false},900)}}});g.appendChild(b)});w.appendChild(g);
-  function fin(){var res=OV.res.slice();for(var i=0;i<Math.min(OV.miss,6);i++)res.push({ok:false,s:'cuad',q:'Parejas: intento fallido',r:'–',c:'–'});
-    var it=buildIntento('juego','Parejas',res,OV.paso,Math.round((Date.now()-OV.t0)/1000));it.errores=[];saveIntento(it);play('win');confetti();
+      if(OV.open.length===2){var x=OV.open[0],y=OV.open[1];OV.lock=true;if(x.k===y.k){setTimeout(function(){x.b.classList.add('done');y.b.classList.add('done');OV.found++;msg.hidden=true;play('ok');OV.open=[];OV.lock=false;if(OV.found===6)fin()},300)}
+        else{OV.miss++;var ex=x.e?x:(y.e?y:null);
+          if(ex){var k=ex.k;OV.mk[k]=(OV.mk[k]||0)+1;if(OV.mk[k]===1){play('hint');say('hint','Pista',pool[k].h)}else{play('ko');say('ko',pool[k].a+' = '+pool[k].b,'Busca la carta '+pool[k].b+'.')}}
+          else{play('hint');say('hint','Pista','Has levantado dos resultados. Levanta primero una potencia o raíz y piensa cuánto da.')}
+          setTimeout(function(){x.b.classList.remove('up');y.b.classList.remove('up');OV.open=[];OV.lock=false},1100)}}});g.appendChild(b)});w.appendChild(g);w.appendChild(msg);
+  function fin(){var res=pool.map(function(p,k){var m=OV.mk[k]||0;return {ok:m<2,pista:m===1,s:p.s,q:p.a+' = ?',r:m>=2?'necesitó la solución':p.b,c:p.b}});
+    saveIntento(buildIntento('juego','Parejas',res,OV.paso,Math.round((Date.now()-OV.t0)/1000)));play('win');confetti();msg.hidden=true;
     w.appendChild(el('div',{class:'qcard final pop'},[el('div',{class:'eyebrow',text:'¡Todas encontradas!'}),el('div',{class:'score',html:OV.miss+'<small> fallos</small>'}),el('div',{class:'row',style:'justify-content:center'},[el('button',{class:'btn sol',type:'button',text:'Otra partida',onclick:function(){parejas(o)}}),el('button',{class:'btn ghost',type:'button',text:'Volver',onclick:closeOv})])]))}}
 
 /* ---------- confeti ---------- */
@@ -942,7 +1048,87 @@ async function fichaPDF(skills,titulo,paso){
     if(paso)saveIntento({ts:Date.now(),fecha:todayStr(),modo:'pdf',titulo:'Ficha: '+titulo,paso:paso,ok:0,total:0,porSkill:{},errores:[],dur:0});
   }catch(e){toast('No se ha podido crear la ficha.')}}
 
+/* ---------- guía: cómo se hace ---------- */
+var GUIDE={
+ cuad:{que:'Elevar al cuadrado o al cubo es multiplicar un número por sí mismo. El numerito pequeño de arriba te dice cuántas veces escribes el número.',
+   pasos:['Mira el numerito de arriba: ² significa DOS veces y ³ significa TRES veces.','Escribe el número grande ese número de veces, con × entre medias.','Multiplica de dos en dos hasta acabar.'],
+   ej:[['3²','= 3 × 3','= 9'],['2³','= 2 × 2 × 2','= 4 × 2 = 8'],['10²','= 10 × 10','= 100']],
+   chips:['2² = 4','3² = 9','4² = 16','5² = 25','6² = 36','7² = 49','8² = 64','9² = 81','10² = 100','11² = 121','12² = 144','2³ = 8','3³ = 27','4³ = 64','5³ = 125'],
+   cuidado:'3² NO es 3 × 3 × 3 (eso es 3³ = 27). Cuenta los números que escribes: con ² son dos, con ³ son tres.'},
+ pot:{que:'Una potencia es una forma corta de escribir una multiplicación en la que se repite siempre el mismo número.',
+   pasos:['La BASE es el número grande: el que se repite.','El EXPONENTE es el número pequeño de arriba: cuántas veces se repite la base.','Se lee la base y luego el exponente: ² «al cuadrado», ³ «al cubo», ⁴ «a la cuarta», ⁵ «a la quinta», ⁶ «a la sexta».'],
+   ej:[['5 × 5 × 5 × 5','el 5 aparece 4 veces','= 5⁴, «cinco a la cuarta»'],['6⁴: base 6, exponente 4','= 6 × 6 × 6 × 6 = 1.296']],
+   cuidado:'Si el número se SUMA (5 + 5 + 5), no es una potencia: es una multiplicación, 5 × 3 = 15.'},
+ pot10:{que:'Las potencias de 10 son las más fáciles: siempre son un 1 seguido de ceros.',
+   pasos:['Mira el exponente (el número pequeño de arriba).','Escribe un 1 y detrás tantos ceros como diga el exponente.','Si hay un número delante, como 35 × 10⁵, escribe ese número y pégale detrás los ceros.'],
+   ej:[['10³','= 1.000','(3 ceros)'],['10⁶','= 1.000.000','(6 ceros)'],['35 × 10⁵','35 y 5 ceros','= 3.500.000']],
+   cuidado:'10⁴ NO es 10 × 4 = 40. Es 10 × 10 × 10 × 10 = 10.000.'},
+ desc10:{que:'Descomponer es separar un número en lo que vale cada una de sus cifras, usando potencias de 10.',
+   pasos:['Fíjate en cada cifra y cuenta cuántas cifras tiene a su DERECHA. Ese número es su exponente.','Escribe cada cifra × 10 elevado a ese exponente. Las cifras que son 0 no se escriben.','Para hacerlo al revés: el exponente más grande + 1 te dice cuántas cifras tiene el número. Dibuja los huecos, pon cada cifra en su sitio y rellena con 0 los que queden vacíos.'],
+   ej:[['74.265','= (7 × 10⁴) + (4 × 10³) + (2 × 10²) + (6 × 10) + 5'],['(5 × 10⁵) + (3 × 10³) + (7 × 10²) + (2 × 10)','10⁵ es el más grande: el número tiene 6 cifras','= 503.720']],
+   places:{titulo:'Así se colocan las cifras del ejemplo 2',cols:[['10⁵','5'],['10⁴','0'],['10³','3'],['10²','7'],['10','2'],['1','0']]},
+   cuidado:'No juntes las cifras sin más: 5, 3, 7 y 2 NO es 5.372. Faltan los ceros de los huecos (el de 10⁴ y el de las unidades).'},
+ raiz:{que:'La raíz cuadrada es lo contrario de elevar al cuadrado.',
+   pasos:['Lee √49 así: «¿qué número multiplicado por sí mismo da 49?».','Prueba números: 6 × 6 = 36 (no llega), 7 × 7 = 49 (¡ese es!).','Si te sabes los cuadrados del 1 al 12, las raíces salen solas.'],
+   ej:[['√81','9 × 9 = 81','= 9'],['?² = 36','6 × 6 = 36','= 6'],['Finca cuadrada con 900 naranjos','√900 = 30','30 por lado']],
+   cuidado:'La raíz NO es la mitad: √16 es 4 (porque 4 × 4 = 16), no 8.'},
+ valpos:{que:'Cada cifra vale distinto según el sitio que ocupa en el número.',
+   pasos:['Separa el número en grupos de tres desde la derecha (los puntos ayudan): millones, miles y unidades.','Busca la cifra y cuenta cuántas cifras tiene a su derecha.','Su valor es esa cifra con ese número de ceros detrás.'],
+   ej:[['605.027.000','el 6 tiene 8 cifras a su derecha','vale 600.000.000'],['(8 × 100.000.000) + (3 × 10.000.000) + (6 × 100.000)','= 830.600.000']],
+   cuidado:'Para saber qué número es mayor, mira primero cuántas cifras tiene. Si tienen las mismas, compara de izquierda a derecha.'},
+ letras:{que:'Los números grandes se leen y se escriben por grupos de tres cifras.',
+   pasos:['Separa por los puntos: 28.300.740 → 28 | 300 | 740.','Lee el primer grupo y di «millones»: veintiocho millones.','Lee el segundo y di «mil»: trescientos mil.','Lee el último tal cual: setecientos cuarenta.'],
+   ej:[['28.300.740','veintiocho millones trescientos mil setecientos cuarenta'],['«nueve millones sesenta mil seis»','9 | 060 | 006','= 9.060.006']],
+   cuidado:'Se escribe quinientos, setecientos y novecientos. Hasta el 29 va junto (veintiséis); desde el 31 va separado (treinta y seis). De letras a cifras: después de «millones» y de «mil» van siempre 3 cifras.'},
+ divis:{que:'Una división tiene cuatro partes: dividendo, divisor, cociente y resto.',
+   pasos:['Dividendo : divisor = cociente, y lo que sobra es el resto.','El resto siempre tiene que ser MENOR que el divisor.','Prueba de la división: divisor × cociente + resto = dividendo.'],
+   ej:[['37 : 7','cociente 5, resto 2','prueba: 7 × 5 + 2 = 37 ✓']],
+   cuidado:'Si te piden el dividendo, multiplica divisor × cociente y no te olvides de sumar el resto.'},
+ comb:{que:'Cuando hay varias operaciones juntas no se hacen de izquierda a derecha sin más: hay un orden.',
+   pasos:['Primero, lo que está entre paréntesis.','Después, multiplicaciones y divisiones, de izquierda a derecha.','Al final, sumas y restas, de izquierda a derecha.','Después de cada paso, vuelve a escribir la operación con el resultado. Así no te pierdes.'],
+   ej:[['4 + 20 : 4','primero 20 : 4 = 5','4 + 5 = 9'],['8 × (20 − 9)','primero (20 − 9) = 11','8 × 11 = 88'],['(6 + 2) × (10 − 3)','8 × 7','= 56']],
+   cuidado:'4 + 20 : 4 NO es 24 : 4 = 6. La división va antes que la suma.'},
+ probl:{que:'Un problema tiene datos, una pregunta y una o varias operaciones.',
+   pasos:['Lee el problema dos veces y subraya los números.','Rodea la pregunta: ¿qué te piden exactamente?','Decide qué operación va primero y cuál después.','Calcula y comprueba si el resultado tiene sentido.'],
+   ej:[['315 personas en 3 plantas. 174 en la 1.ª y 57 en la 2.ª. ¿Cuántas en la 3.ª?','174 + 57 = 231','315 − 231 = 84 personas']],
+   cuidado:'Palabras pista: «en total» suele ser sumar o multiplicar; «quedan» o «faltan», restar; «reparte» o «cada uno», dividir.'}
+};
+var GAMEGUIDE=[
+ {id:'penaltis',tit:'Tanda de penaltis',pasos:['Tienes 5 tiros. Resuelve la operación y pulsa «¡Tirar!».','Si aciertas, es gol.','Si fallas, el portero se adelanta: lee la pista y vuelve a tirar.','Si fallas otra vez, el portero para y te enseña la solución.']},
+ {id:'contrarreloj',tit:'Contrarreloj',pasos:['Tienes 60 segundos. Pulsa «¡Empezar!».','Escribe la respuesta y pulsa Enter. Cada acierto es un pase.','Si fallas, sale una pista y puedes repetir.','Si vuelves a fallar, ves la solución y pasas a la siguiente.']},
+ {id:'primero',tit:'¿Qué va primero?',pasos:['Sale una operación larga. Toca el signo (+, −, ×, :) de la operación que se hace antes.','La app la resuelve y te deja tocar la siguiente.','Al primer error te da una pista. Al segundo, se ilumina en amarillo la que va primero.','Orden: paréntesis, luego × y :, luego + y −.']},
+ {id:'parejas',tit:'Parejas',pasos:['Hay 12 cartas tapadas: 6 potencias o raíces y sus 6 resultados.','Da la vuelta a dos. Si son pareja (por ejemplo 5² y 25), se quedan boca arriba.','Si no lo son, se tapan otra vez y te damos una pista para calcular esa carta.','La segunda vez que falles con la misma carta, te decimos su resultado.']}
+];
+var CHEV='<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
+function guideBody(id,compact){var g=GUIDE[id],d=el('div',{class:'gbody'+(compact?' compact':'')});
+  d.appendChild(el('p',{text:g.que}));d.appendChild(el('div',{class:'glbl',text:'Cómo se hace'}));
+  var ol=el('ol');g.pasos.forEach(function(p){ol.appendChild(el('li',{text:p}))});d.appendChild(ol);
+  g.ej.forEach(function(e,i){var b=el('div',{class:'gex'},[el('span',{class:'glbl',text:'Ejemplo'+(g.ej.length>1?' '+(i+1):'')})]);e.forEach(function(l){b.appendChild(el('span',{class:'ln'+(l.length>30?' long':''),text:l}))});d.appendChild(b)});
+  if(g.places){var pl=el('div',{class:'places',style:'--n:'+g.places.cols.length});g.places.cols.forEach(function(c){pl.appendChild(el('div',{class:c[1]==='0'?'z':''},[el('small',{text:c[0]}),el('b',{text:c[1]})]))});
+    d.appendChild(el('div',{class:'gex'},[el('span',{class:'glbl',text:g.places.titulo}),pl,el('span',{class:'muted',style:'font-size:14px',text:'En rojo, los huecos que se rellenan con 0.'})]))}
+  if(g.chips){var ch=el('div',{class:'gchips'});g.chips.forEach(function(c){ch.appendChild(el('span',{text:c}))});d.appendChild(el('div',{class:'gex'},[el('span',{class:'glbl',text:'Para aprendértelos'}),ch]))}
+  d.appendChild(el('div',{class:'gwarn'},[el('b',{text:'Cuidado: '}),g.cuidado]));
+  if(!compact)d.appendChild(el('div',{class:'row'},[el('button',{class:'btn small',type:'button',text:'Practicar esto',onclick:function(){startQuiz({titulo:SK[id].nombre,skills:[id],n:10})}})]));
+  return d}
+function renderGuide(){var w=$('#guideList');w.textContent='';
+  [1,2].forEach(function(t){var box=el('div',{class:'gtema'},[el('h3',{text:t===1?'Tema 1 · Números naturales y operaciones':'Tema 2 · Potencias y raíz cuadrada'})]);
+    SKILLS.filter(function(s){return s.tema===t}).forEach(function(s){var dt=el('details',{class:'g',id:'g-'+s.id});
+      dt.appendChild(el('summary',null,[el('h4',{text:s.nombre}),el('span',{class:'row',style:'gap:8px;flex-wrap:nowrap'},[s.nivel==='tope'?el('span',{class:'lvl tope',text:'A tope'}):null,el('span',{html:CHEV})])]));
+      dt.addEventListener('toggle',function(){if(dt.open&&!dt.dataset.f){dt.appendChild(guideBody(s.id,false));dt.dataset.f='1'}});box.appendChild(dt)});
+    w.appendChild(box)});
+  var gw=$('#gameGuide');gw.textContent='';GAMEGUIDE.forEach(function(g){var dt=el('details',{class:'g'});dt.appendChild(el('summary',null,[el('h4',{text:g.tit}),el('span',{html:CHEV})]));
+    var b=el('div',{class:'gbody'}),ol=el('ol');g.pasos.forEach(function(p){ol.appendChild(el('li',{text:p}))});b.appendChild(ol);
+    b.appendChild(el('div',{class:'row'},[el('button',{class:'btn small',type:'button',text:'Jugar',onclick:function(){startGame(g.id,{})}})]));dt.appendChild(b);gw.appendChild(dt)})}
+function openGuide(ids){if(typeof ids==='string')ids=[ids];show('aprende');ids.forEach(function(id){var d=$('#g-'+id);if(d&&!d.open)d.open=true});
+  var f=$('#g-'+ids[0]);if(f)setTimeout(function(){try{f.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){f.scrollIntoView()}},60)}
+function openGuideOv(p){var t0=Date.now();openOv();var w=$('#ovIn');w.textContent='';w.appendChild(ovTop(p.titulo));
+  w.appendChild(el('div',{class:'ghint'},[el('b',{text:'Lee con calma y mira los ejemplos. '}),'Luego, en las preguntas, si fallas una vez te damos una pista; si fallas dos, la solución.']));
+  p.skills.forEach(function(id){w.appendChild(el('div',{class:'card'},[el('h3',{text:SK[id].nombre}),guideBody(id,true)]))});
+  w.appendChild(el('button',{class:'btn sol',type:'button',text:'Lo he entendido · ¡a practicar!',onclick:function(){saveIntento({ts:Date.now(),fecha:todayStr(),modo:'guia',titulo:'Guía: '+p.desc,paso:p.id,ok:0,pista:0,total:0,porSkill:{},errores:[],dur:Math.round((Date.now()-t0)/1000)});play('ok');closeOv()}}))}
+
 /* ---------- arranque ---------- */
+$('#topeHow').addEventListener('click',function(){openGuide(TOPE)});
+renderGuide();
 $('#topeGo').addEventListener('click',function(){startQuiz({titulo:'Refuerzo a tope',skills:TOPE,n:15})});
 $('#mixGo').addEventListener('click',function(){startQuiz({titulo:'Mezcla de todo',skills:ALL,n:15})});
 $('#pdfAll').addEventListener('click',function(){fichaPDF(ALL,'Repaso general')});
