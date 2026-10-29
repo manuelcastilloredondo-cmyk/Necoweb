@@ -1,4 +1,4 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Venecia · Mamaines</title>
 <meta http-equiv="refresh" content="1;url=https://manuelcastilloredondo-cmyk.github.io/venecia-mamaines/"></head>
 <body style="font-family:sans-serif;padding:24px">La app de Venecia se ha mudado: <a href="https://manuelcastilloredondo-cmyk.github.io/venecia-mamaines/">abrir la app nueva</a>.
-<script>if(navigator.serviceWorker)navigator.serviceWorker.getRegistrations().then(r=>r.forEach(x=>x.unregister()));caches&&caches.keys().then(k=>k.forEach(n=>n.startsWith("venecia")&&caches.delete(n)));setTimeout(()=>location.replace("https://manuelcastilloredondo-cmyk.github.io/venecia-mamaines/"),300);</script></body></html>
+<script>if(navigator.serviceWorker)navigator.serviceWorker.getRegistrations().then(r=>r.forEach(x=>x.scope.includes("/Necoweb/venecia/")&&x.unregister()));caches&&caches.keys().then(k=>k.forEach(n=>n.startsWith("venecia")&&caches.delete(n)));setTimeout(()=>location.replace("https://manuelcastilloredondo-cmyk.github.io/venecia-mamaines/"),300);</script></body></html>
