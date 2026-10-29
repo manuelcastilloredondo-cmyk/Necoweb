@@ -261,7 +261,7 @@ td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
         </table>
       </div>
 
-      <p class="note" style="margin:20px 0 6px">Los puntos del mapa son aproximados; los botones abren la ubicación exacta en Google Maps. Mapa © OpenStreetMap, CARTO.</p>
+      <p class="note" style="margin:20px 0 6px">Los puntos del mapa son aproximados; los botones abren la ubicación exacta en Google Maps. Mapa © OpenStreetMap.</p>
       <p class="note"><button class="btn line" id="theme">Cambiar modo claro/oscuro</button></p>
     </div>
   </section>
@@ -320,7 +320,7 @@ const layers = {};
 function initMap(){
   if(!window.L){ document.getElementById("map").innerHTML = '<div style="padding:24px">El mapa necesita conexión la primera vez. Los botones de Google Maps siguen funcionando.</div>'; return; }
   map = L.map("map",{zoomControl:false, attributionControl:true}).setView([P.casa.lat,P.casa.lng],15);
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",{maxZoom:19,subdomains:"abcd",attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · © <a href="https://carto.com/">CARTO</a>'}).addTo(map);
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'}).addTo(map);
   Object.keys(CATS).forEach(c=>layers[c]=L.layerGroup().addTo(map));
   PLACES.forEach(p=>{
     const c = CATS[p.cat]; const big = p.cat==="casa";
